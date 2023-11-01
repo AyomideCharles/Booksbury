@@ -13,9 +13,10 @@ class HomeCard extends StatelessWidget {
         ClipRRect(
           borderRadius: BorderRadius.circular(10),
           child: Image.network(
-            'https://res.cloudinary.com/dxje0rp9f/image/upload/v1673446386/Link%20Park/unsplash_s9CC2SKySJM_1_qzsoaq.png',
+            'https://images.unsplash.com/flagged/photo-1572392640988-ba48d1a74457?auto=format&fit=crop&q=80&w=1964&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
             fit: BoxFit.cover,
             height: double.infinity,
+            width: double.infinity,
           ),
         ),
         const Positioned(top: 10, right: 10, child: Icon(Iconsax.save_2)),

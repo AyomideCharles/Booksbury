@@ -13,8 +13,11 @@ class HomeList extends StatelessWidget {
         itemBuilder: (context, index) {
           return ListTile(
             contentPadding: EdgeInsets.zero,
-            leading: Image.network(
-              'https://res.cloudinary.com/dxje0rp9f/image/upload/v1673446386/Link%20Park/unsplash_s9CC2SKySJM_1_qzsoaq.png',
+            leading: ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: Image.network(
+                'https://images.unsplash.com/photo-1526559881144-9df4bf3eb37a?auto=format&fit=crop&q=80&w=1771&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+              ),
             ),
             title: const Text('History of the Ancient Worlds'),
             subtitle: const Text('Name of Author'),

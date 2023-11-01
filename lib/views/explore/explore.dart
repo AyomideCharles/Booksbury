@@ -47,7 +47,10 @@ class _ExploreState extends State<Explore> {
                         .map((e) => Container(
                               margin: const EdgeInsets.only(right: 10),
                               padding: const EdgeInsets.all(5),
-                              decoration: BoxDecoration(border: Border.all()),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  border:
+                                      Border.all(color: AppColor.buttonColor)),
                               child: Row(
                                 children: [Icon(e['icon']), Text(e['explore'])],
                               ),
