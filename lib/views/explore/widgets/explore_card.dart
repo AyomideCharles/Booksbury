@@ -1,4 +1,5 @@
 import 'package:audio_books/constants/app_color.dart';
+import 'package:audio_books/model/explorebooks_model.dart';
 import 'package:audio_books/views/explore/widgets/bookinfo.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -17,7 +18,7 @@ class ExploreCard extends StatelessWidget {
           mainAxisSpacing: 20,
           crossAxisSpacing: 20,
           childAspectRatio: 1 / 1.5),
-      itemCount: 10,
+      itemCount: explorebooks.length,
       itemBuilder: (context, index) {
         return GestureDetector(
           onTap: () {
@@ -37,7 +38,7 @@ class ExploreCard extends StatelessWidget {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(10),
                     child: Image.network(
-                      'https://images.unsplash.com/photo-1604580864964-0462f5d5b1a8?auto=format&fit=crop&q=80&w=1770&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                      explorebooks[index].image,
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -45,21 +46,21 @@ class ExploreCard extends StatelessWidget {
                 const SizedBox(
                   height: 5,
                 ),
-                const Text(
-                  'The Republic',
-                  style: TextStyle(fontSize: 17),
+                Text(
+                  explorebooks[index].title,
+                  style: const TextStyle(fontSize: 17),
                 ),
-                const Text(
-                  'By Plato',
-                  style: TextStyle(color: AppColor.tertiaryColor),
+                Text(
+                  explorebooks[index].author,
+                  style: const TextStyle(color: AppColor.tertiaryColor),
                 ),
                 const Spacer(),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text(
-                      '\$ 268',
-                      style: TextStyle(fontSize: 15),
+                    Text(
+                      '\$${explorebooks[index].price.toString()}',
+                      style: const TextStyle(fontSize: 15),
                     ),
                     ElevatedButton(
                         style: ElevatedButton.styleFrom(
