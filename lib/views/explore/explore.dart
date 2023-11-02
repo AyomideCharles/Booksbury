@@ -17,7 +17,6 @@ List explore = [
   {'icon': Icons.trending_down, 'explore': 'Children'},
   {'icon': Icons.trending_down, 'explore': 'Ancient'},
   {'icon': Icons.trending_down, 'explore': 'Hymns'},
-  {'icon': Icons.trending_down, 'explore': 'Trending'},
 ];
 
 class _ExploreState extends State<Explore> {

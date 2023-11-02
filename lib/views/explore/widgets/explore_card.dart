@@ -48,11 +48,15 @@ class ExploreCard extends StatelessWidget {
                 ),
                 Text(
                   explorebooks[index].title,
-                  style: const TextStyle(fontSize: 17),
+                  style: const TextStyle(
+                      fontSize: 17, fontWeight: FontWeight.w500),
                 ),
                 Text(
                   explorebooks[index].author,
-                  style: const TextStyle(color: AppColor.tertiaryColor),
+                  style: const TextStyle(
+                      color: AppColor.tertiaryColor,
+                      fontSize: 15,
+                      fontWeight: FontWeight.w400),
                 ),
                 const Spacer(),
                 Row(
@@ -60,7 +64,8 @@ class ExploreCard extends StatelessWidget {
                   children: [
                     Text(
                       '\$${explorebooks[index].price.toString()}',
-                      style: const TextStyle(fontSize: 15),
+                      style: const TextStyle(
+                          fontSize: 15, fontWeight: FontWeight.w500),
                     ),
                     ElevatedButton(
                         style: ElevatedButton.styleFrom(
