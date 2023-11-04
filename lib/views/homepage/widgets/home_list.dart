@@ -1,7 +1,9 @@
-import 'package:audio_books/model/popularbooks_model.dart';
+import 'package:audio_books/constants/app_color.dart';
+import 'package:audio_books/services/api_service.dart';
+import 'package:audio_books/services/fetchapi.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_connect/http/src/utils/utils.dart';
-import '../../../services/api_service.dart';
+// import 'package:skeletons/skeletons.dart';
 
 class HomeList extends StatefulWidget {
   const HomeList({super.key});
@@ -11,90 +13,47 @@ class HomeList extends StatefulWidget {
 }
 
 class _HomeListState extends State<HomeList> {
-  Future<VolumeInfo?>? volumeinfo;
-
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: volumeinfo,
+    return FutureBuilder<List<VolumeInfo>>(
+      future: fetchBooks(),
       builder: (context, snapshot) {
-        if (snapshot.hasError) {
-          return const CircularProgressIndicator();
-        } else if (snapshot.hasData) {
-          final data = snapshot.data;
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(
+              child: CircularProgressIndicator(
+            color: AppColor.tertiaryColor,
+          ));
+        } else if (snapshot.hasError) {
+          return Center(child: Text('Error: ${snapshot.error}'));
+        } else {
+          List<VolumeInfo> books = snapshot.data!;
           return ListView.builder(
               primary: F,
-              itemCount: popular.length,
+              itemCount: books.length,
               shrinkWrap: true,
               itemBuilder: (context, index) {
                 return ListTile(
                   contentPadding: EdgeInsets.zero,
-                  leading: ClipRRect(
-                    borderRadius: BorderRadius.circular(10),
-                    child: Image.network(popular[index].image),
-                  ),
+                  leading: books[index].imageLinks != null
+                      ? ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: Image.network(
+                            books[index].imageLinks!.thumbnail ?? '',
+                            width: 100,
+                            fit: BoxFit.cover,
+                          ),
+                        )
+                      : const Icon(Icons.image),
                   title: Text(
-                    popular[index].title,
+                    books[index].title,
                     style: const TextStyle(
                         fontSize: 16, fontWeight: FontWeight.w500),
                   ),
-                  subtitle: Text(popular[index].author),
+                  subtitle: Text(books[index].authors.join(', ')),
                 );
               });
-        } else {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
         }
       },
     );
-    // return ListView.builder(
-    //     primary: F,
-    //     itemCount: popular.length,
-    //     shrinkWrap: true,
-    //     itemBuilder: (context, index) {
-    //       return ListTile(
-    //         contentPadding: EdgeInsets.zero,
-    //         leading: ClipRRect(
-    //           borderRadius: BorderRadius.circular(10),
-    //           child: Image.network(popular[index].image),
-    //         ),
-    //         title: Text(
-    //           popular[index].title,
-    //           style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-    //         ),
-    //         subtitle: Text(popular[index].author),
-    //       );
-    //     });
   }
 }
-
-
-// body: FutureBuilder(
-//         future: volumeinfo,
-//         builder: (context, snapshot) {
-//           if (snapshot.hasError) {
-//             return const CircularProgressIndicator();
-//           } else if (snapshot.hasData) {
-//             final data = snapshot.data;
-//             return ListView(
-//               padding: const EdgeInsets.all(15),
-//               children: const [
-//                 HomeCard(),
-//                 SizedBox(
-//                   height: 15,
-//                 ),
-//                 Text(
-//                   'Popular Books',
-//                   style: TextStyle(fontSize: 25),
-//                 ),
-//                 HomeList()
-//               ],
-//             );
-//           } else {
-//             return const Center(
-//               child: CircularProgressIndicator(),
-//             );
-//           }
-//         },
-//       ),

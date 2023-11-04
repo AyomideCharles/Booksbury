@@ -32,12 +32,9 @@ class Home extends StatelessWidget {
                 ]))
           ],
         ),
-        actions: const [
-          Icon(Iconsax.notification),
-          Padding(
-            padding: EdgeInsets.only(right: 10, left: 10),
-            child: Icon(Iconsax.search_favorite),
-          )
+        actions: [
+          const Icon(Iconsax.notification),
+          IconButton(onPressed: () {}, icon: const Icon(Icons.search))
         ],
       ),
       body: ListView(
