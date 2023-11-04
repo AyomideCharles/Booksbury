@@ -1,4 +1,5 @@
 import 'package:audio_books/bottom_nav/bottom_nav.dart';
+import 'package:audio_books/model/explorebooks_model.dart';
 import 'package:audio_books/views/explore/explore.dart';
 import 'package:audio_books/views/explore/widgets/bookinfo.dart';
 import 'package:audio_books/views/homepage/home.dart';
@@ -13,7 +14,11 @@ class AppRoute {
     GetPage(name: explore, page: () => const Explore()),
     GetPage(name: save, page: () => const SavedPage()),
     GetPage(name: profile, page: () => const Profile()),
-    GetPage(name: bookinfo, page: () => const BookInfo())
+    GetPage(
+        name: bookinfo,
+        page: () => BookInfo(
+              booking: Get.arguments as ExploreBooks,
+            ))
   ];
 
   static getnavbar() => navbar;

@@ -20,9 +20,10 @@ class ExploreCard extends StatelessWidget {
           childAspectRatio: 1 / 1.5),
       itemCount: explorebooks.length,
       itemBuilder: (context, index) {
+        final selectedBook = explorebooks[index];
         return GestureDetector(
           onTap: () {
-            Get.to(const BookInfo());
+            Get.to( BookInfo(booking: selectedBook,));
           },
           child: Container(
             decoration: BoxDecoration(

@@ -49,7 +49,7 @@ List<ExploreBooks> explorebooks = [
   ),
   ExploreBooks(
     image:
-        'https://images.unsplash.com/photo-1604580864964-0462f5d5b1a8?auto=format&fit=crop&q=80&w=1770&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        'https://images.unsplash.com/photo-1553986782-9f6de60b51b4?auto=format&fit=crop&q=80&w=1749&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     title: 'Allegory of Cave',
     author: 'Derek',
     price: 268,

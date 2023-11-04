@@ -40,11 +40,11 @@ class NavBar extends StatelessWidget {
                   ),
                   label: 'Home'),
               BottomNavigationBarItem(
-                  icon: Icon(Iconsax.presention_chart), label: 'Explore'),
+                  icon: Icon(Iconsax.activity), label: 'Explore'),
               BottomNavigationBarItem(
                   icon: Icon(Iconsax.save_2), label: 'Saved'),
               BottomNavigationBarItem(
-                  icon: Icon(Iconsax.profile_add), label: 'Profile')
+                  icon: Icon(Iconsax.profile_2user4), label: 'Profile')
             ],
           ),
         ),
