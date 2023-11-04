@@ -1,10 +1,11 @@
-import 'package:audio_books/model/explorebooks_model.dart';
+import 'package:audio_books/services/api_service.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import '../../../constants/app_color.dart';
 
 class BookInfo extends StatefulWidget {
-  final ExploreBooks booking;
+  // final ExploreBooks booking;
+  final VolumeInfo booking;
   const BookInfo({super.key, required this.booking});
 
   @override
@@ -34,16 +35,18 @@ class _BookInfoState extends State<BookInfo> with TickerProviderStateMixin {
           child: Column(children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(10),
-              child: Image.network(widget.booking.image),
+              child: Image.network(
+                widget.booking.imageLinks!.thumbnail ?? '',
+                width: 400,
+                height: MediaQuery.of(context).size.height / 4,
+                fit: BoxFit.fitWidth,
+                filterQuality: FilterQuality.high,
+              ),
             ),
             ListTile(
               contentPadding: EdgeInsets.zero,
               title: Text(widget.booking.title),
-              subtitle: Text(widget.booking.author),
-              trailing: Text(
-                '\$${widget.booking.price.toString()}',
-                style: const TextStyle(fontSize: 16),
-              ),
+              subtitle: Text(widget.booking.authors.join()),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -55,13 +58,13 @@ class _BookInfoState extends State<BookInfo> with TickerProviderStateMixin {
                       border: Border.all(color: AppColor.buttonColor)),
                   width: 100,
                   height: 50,
-                  child: const Column(
+                  child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text('Released'),
+                      const Text('Released'),
                       Text(
-                        '2021',
-                        style: TextStyle(fontSize: 16),
+                        widget.booking.publishedDate,
+                        style: const TextStyle(fontSize: 16),
                       )
                     ],
                   ),
@@ -90,11 +93,13 @@ class _BookInfoState extends State<BookInfo> with TickerProviderStateMixin {
             Container(
               padding: const EdgeInsets.only(top: 10),
               height: MediaQuery.of(context).size.height,
-              child: TabBarView(controller: tabControll, children: const [
-                Text('tab 1 view'),
-                Text('tab 2 view'),
-                Text('tab 3 view'),
-                Text('tab 4 view'),
+              child: TabBarView(controller: tabControll, children: [
+                Text(widget.booking.description ?? ''),
+                Column(
+                  children: [Text(widget.booking.publishedDate)],
+                ),
+                const Text('tab 3 view'),
+                const Text('tab 4 view'),
               ]),
             ),
           ]),
