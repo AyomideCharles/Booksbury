@@ -14,7 +14,7 @@ class ExploreCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: fetchBooks(),
+      future: exploremarket(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(

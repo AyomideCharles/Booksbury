@@ -1,7 +1,10 @@
 import 'package:audio_books/views/homepage/widgets/home_card.dart';
 import 'package:audio_books/views/homepage/widgets/home_list.dart';
+import 'package:audio_books/views/homepage/widgets/home_search.dart';
+import 'package:audio_books/views/homepage/widgets/trending_books.dart';
 import 'package:flutter/material.dart';
 import 'package:audio_books/constants/app_color.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
 class Home extends StatelessWidget {
@@ -34,7 +37,11 @@ class Home extends StatelessWidget {
         ),
         actions: [
           const Icon(Iconsax.notification),
-          IconButton(onPressed: () {}, icon: const Icon(Icons.search))
+          IconButton(
+              onPressed: () {
+                Get.to(Search());
+              },
+              icon: const Icon(Icons.search))
         ],
       ),
       body: ListView(
@@ -45,10 +52,18 @@ class Home extends StatelessWidget {
             height: 15,
           ),
           Text(
-            'Popular Books',
-            style: TextStyle(fontSize: 25),
+            'Popular',
+            style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
           ),
-          HomeList()
+          HomeList(),
+          SizedBox(
+            height: 15,
+          ),
+          Text(
+            'Trending',
+            style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
+          ),
+          TrendingBooks()
         ],
       ),
     );

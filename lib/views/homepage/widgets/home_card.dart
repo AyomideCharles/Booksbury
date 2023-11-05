@@ -19,7 +19,7 @@ class HomeCard extends StatelessWidget {
             width: double.infinity,
           ),
         ),
-        const Positioned(top: 10, right: 10, child: Icon(Iconsax.save_2)),
+        const Positioned(top: 10, right: 10, child: Icon(Iconsax.save_21)),
         Positioned(
           bottom: 0,
           right: 0,

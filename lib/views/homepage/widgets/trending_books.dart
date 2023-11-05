@@ -2,21 +2,19 @@ import 'package:audio_books/constants/app_color.dart';
 import 'package:audio_books/services/api_service.dart';
 import 'package:audio_books/services/fetchapi.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
-// import 'package:skeletons/skeletons.dart';
 
-class HomeList extends StatefulWidget {
-  const HomeList({super.key});
+class TrendingBooks extends StatefulWidget {
+  const TrendingBooks({super.key});
 
   @override
-  State<HomeList> createState() => _HomeListState();
+  State<TrendingBooks> createState() => _HomeListState();
 }
 
-class _HomeListState extends State<HomeList> {
+class _HomeListState extends State<TrendingBooks> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<VolumeInfo>>(
-      future: fetchBooks(),
+      future: trendingbooks(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(
@@ -52,31 +50,6 @@ class _HomeListState extends State<HomeList> {
               }).toList(),
             ),
           );
-          // return ListView.builder(
-          //     primary: F,
-          //     itemCount: books.length,
-          //     shrinkWrap: true,
-          //     itemBuilder: (context, index) {
-          //       return ListTile(
-          //         contentPadding: EdgeInsets.zero,
-          //         leading: books[index].imageLinks != null
-          //             ? ClipRRect(
-          //                 borderRadius: BorderRadius.circular(10),
-          //                 child: Image.network(
-          //                   books[index].imageLinks!.thumbnail ?? '',
-          //                   width: 100,
-          //                   fit: BoxFit.cover,
-          //                 ),
-          //               )
-          //             : const Icon(Icons.image),
-          //         title: Text(
-          //           books[index].title,
-          //           style: const TextStyle(
-          //               fontSize: 16, fontWeight: FontWeight.w500),
-          //         ),
-          //         subtitle: Text(books[index].subtitle ?? ''),
-          //       );
-          //     });
         }
       },
     );

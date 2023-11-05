@@ -13,8 +13,8 @@ class Explore extends StatefulWidget {
 
 List explore = [
   {'icon': Icons.trending_up_rounded, 'explore': 'Trending'},
-  {'icon': Icons.trending_down, 'explore': 'Romance'},
-  {'icon': Icons.trending_down, 'explore': 'Children'},
+  {'icon': Iconsax.heart, 'explore': 'Romance'},
+  {'icon': Icons.child_care, 'explore': 'Children'},
   {'icon': Icons.trending_down, 'explore': 'Ancient'},
   {'icon': Icons.trending_down, 'explore': 'Hymns'},
 ];
@@ -51,7 +51,13 @@ class _ExploreState extends State<Explore> {
                                   border:
                                       Border.all(color: AppColor.buttonColor)),
                               child: Row(
-                                children: [Icon(e['icon']), Text(e['explore'])],
+                                children: [
+                                  Icon(e['icon']),
+                                  const SizedBox(
+                                    width: 10,
+                                  ),
+                                  Text(e['explore'])
+                                ],
                               ),
                             ))
                         .toList(),

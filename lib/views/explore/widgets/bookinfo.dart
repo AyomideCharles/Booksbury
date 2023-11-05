@@ -4,7 +4,6 @@ import 'package:iconsax/iconsax.dart';
 import '../../../constants/app_color.dart';
 
 class BookInfo extends StatefulWidget {
-  // final ExploreBooks booking;
   final VolumeInfo booking;
   const BookInfo({super.key, required this.booking});
 
@@ -14,6 +13,12 @@ class BookInfo extends StatefulWidget {
 
 class _BookInfoState extends State<BookInfo> with TickerProviderStateMixin {
   late TabController tabControll;
+
+  List cardInfo = [
+    {'info': 'Released'},
+    {'info': 'Part'},
+    {'info': 'Pages'},
+  ];
 
   @override
   void initState() {
@@ -37,9 +42,9 @@ class _BookInfoState extends State<BookInfo> with TickerProviderStateMixin {
               borderRadius: BorderRadius.circular(10),
               child: Image.network(
                 widget.booking.imageLinks!.thumbnail ?? '',
-                width: 400,
-                height: MediaQuery.of(context).size.height / 4,
-                fit: BoxFit.fitWidth,
+                width: double.infinity,
+                height: MediaQuery.of(context).size.height * 0.3,
+                fit: BoxFit.fill,
                 filterQuality: FilterQuality.high,
               ),
             ),
@@ -61,10 +66,11 @@ class _BookInfoState extends State<BookInfo> with TickerProviderStateMixin {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text('Released'),
+                      Text(cardInfo[index]['info']),
                       Text(
-                        widget.booking.publishedDate,
-                        style: const TextStyle(fontSize: 16),
+                        widget.booking.pageCount.toString(),
+                        style: const TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.w500),
                       )
                     ],
                   ),
@@ -96,7 +102,26 @@ class _BookInfoState extends State<BookInfo> with TickerProviderStateMixin {
               child: TabBarView(controller: tabControll, children: [
                 Text(widget.booking.description ?? ''),
                 Column(
-                  children: [Text(widget.booking.publishedDate)],
+                  children: [
+                    Row(
+                      children: [
+                        const Text('Date: '),
+                        Text(widget.booking.publishedDate),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        const Text('Publisher: '),
+                        Text(widget.booking.publisher ?? ''),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        const Text('Subtitle: '),
+                        Text(widget.booking.subtitle ?? ''),
+                      ],
+                    )
+                  ],
                 ),
                 const Text('tab 3 view'),
                 const Text('tab 4 view'),

@@ -4,6 +4,7 @@ import 'package:audio_books/views/explore/widgets/bookinfo.dart';
 import 'package:audio_books/views/homepage/home.dart';
 import 'package:audio_books/bottom_nav/profile.dart';
 import 'package:audio_books/bottom_nav/save.dart';
+import 'package:audio_books/views/homepage/widgets/home_search.dart';
 import 'package:get/get.dart';
 
 class AppRoute {
@@ -17,7 +18,8 @@ class AppRoute {
         name: bookinfo,
         page: () => BookInfo(
               booking: Get.arguments,
-            ))
+            )),
+    // GetPage(name: search, page: () => const Search()),
   ];
 
   static getnavbar() => navbar;
@@ -26,6 +28,7 @@ class AppRoute {
   static getsave() => save;
   static getprofile() => profile;
   static getbookinfo() => bookinfo;
+  // static getsearch() => search;
 
   static String navbar = '/';
   static String home = '/home';
@@ -33,4 +36,5 @@ class AppRoute {
   static String save = '/save';
   static String profile = '/profile';
   static String bookinfo = '/bookinfo';
+  // static String search = '/bookinfo';
 }
