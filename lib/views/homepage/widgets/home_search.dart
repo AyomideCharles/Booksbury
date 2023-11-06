@@ -1,26 +1,26 @@
+import 'package:audio_books/constants/app_color.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../../../constants/app_color.dart';
+import '../../../services/api_service.dart';
+import '../../../services/fetchapi.dart';
 
 class SearchController extends GetxController {
-  RxList<String> searchedWords = <String>[].obs;
-  TextEditingController searchController = TextEditingController();
+  var searchResults = <SearchResult>[].obs;
 
-  void addSearchedWord(String word) {
-    searchedWords.add(word);
-    searchController.clear();
-  }
-
-  void removeSearchedWord(int index) {
-    searchedWords.removeAt(index);
+  void search(String query) async {
+    try {
+      List<SearchResult> results = await ApiService.searchBooks(query);
+      searchResults.value = results;
+    } catch (e) {
+      // Handle errors, e.g., show an error message to the user
+    }
   }
 }
 
-class Search extends StatelessWidget {
+class SearchScreen extends StatelessWidget {
   final SearchController searchController = Get.put(SearchController());
 
-  Search({super.key});
+  SearchScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -28,46 +28,47 @@ class Search extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: AppColor.primaryColor,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(15.0),
-        child: Column(
-          children: [
-            TextField(
-              controller: searchController.searchController,
-              onSubmitted: (value) {
-                searchController.addSearchedWord(value);
-              },
-              decoration: InputDecoration(
-                border: const OutlineInputBorder(),
-                hintText: 'Search Books...',
-                suffixIcon: IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.cancel),
-                ),
-              ),
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            Obx(() {
-              return ListView.builder(
-                shrinkWrap: true,
-                itemCount: searchController.searchedWords.length,
-                itemBuilder: (context, index) {
-                  return ListTile(
-                    contentPadding: EdgeInsets.zero,
-                    leading: IconButton(
-                      onPressed: () {
-                        searchController.removeSearchedWord(index);
-                      },
+      body: SingleChildScrollView(
+        child: Obx(
+          () => Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: Column(
+              children: [
+                TextField(
+                  onChanged: (query) {
+                    if (query.isNotEmpty) {
+                      searchController.search(query);
+                    }
+                  },
+                  decoration: InputDecoration(
+                    border: const OutlineInputBorder(),
+                    hintText: 'Search Books...',
+                    suffixIcon: IconButton(
+                      onPressed: () {},
                       icon: const Icon(Icons.cancel),
                     ),
-                    title: Text(searchController.searchedWords[index]),
-                  );
-                },
-              );
-            }),
-          ],
+                  ),
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                ListView.builder(
+                  primary: false,
+                  shrinkWrap: true,
+                  itemCount: searchController.searchResults.length,
+                  itemBuilder: (context, index) {
+                    SearchResult result = searchController.searchResults[index];
+                    return ListTile(
+                      leading:
+                          Image.network(result.imageLinks?.thumbnail ?? ''),
+                      title: Text(result.title),
+                      subtitle: Text('Author: ${result.author}'),
+                    );
+                  },
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );

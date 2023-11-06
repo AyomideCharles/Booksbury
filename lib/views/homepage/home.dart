@@ -39,7 +39,7 @@ class Home extends StatelessWidget {
           const Icon(Iconsax.notification),
           IconButton(
               onPressed: () {
-                Get.to(Search());
+                Get.to(SearchScreen());
               },
               icon: const Icon(Icons.search))
         ],

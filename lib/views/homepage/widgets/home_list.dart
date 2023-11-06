@@ -2,8 +2,6 @@ import 'package:audio_books/constants/app_color.dart';
 import 'package:audio_books/services/api_service.dart';
 import 'package:audio_books/services/fetchapi.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
-// import 'package:skeletons/skeletons.dart';
 
 class HomeList extends StatefulWidget {
   const HomeList({super.key});

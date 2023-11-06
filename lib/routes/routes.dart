@@ -4,7 +4,6 @@ import 'package:audio_books/views/explore/widgets/bookinfo.dart';
 import 'package:audio_books/views/homepage/home.dart';
 import 'package:audio_books/bottom_nav/profile.dart';
 import 'package:audio_books/bottom_nav/save.dart';
-import 'package:audio_books/views/homepage/widgets/home_search.dart';
 import 'package:get/get.dart';
 
 class AppRoute {

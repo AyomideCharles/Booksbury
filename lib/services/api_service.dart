@@ -561,3 +561,27 @@ class ImageLinks {
   }
 }
 
+class SearchResult {
+  final String title;
+  final String author;
+  ImageLinks? imageLinks;
+
+  SearchResult({
+    required this.title,
+    required this.author,
+    this.imageLinks,
+  });
+
+  factory SearchResult.fromJson(Map<String, dynamic> json) {
+    return SearchResult(
+      title: json['volumeInfo']['title'],
+      author: json['volumeInfo']['authors'] != null
+          ? json['volumeInfo']['authors'][0]
+          : 'Unknown Author',
+      imageLinks: json['volumeInfo']['imageLinks'] != null
+          ? ImageLinks.fromJson(json['volumeInfo']['imageLinks'])
+          : null,
+    );
+  }
+}
+

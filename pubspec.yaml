@@ -38,8 +38,6 @@ dependencies:
   iconsax: ^0.0.8
   get: ^4.6.5
   http: ^1.1.0
-  skeletons: ^0.0.3
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
