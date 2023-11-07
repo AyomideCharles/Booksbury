@@ -169,14 +169,14 @@ class _BookInfoState extends State<BookInfo> with TickerProviderStateMixin {
                   child: const Row(
                     children: [
                       Icon(
-                        Iconsax.audio_square,
+                        Iconsax.document_download,
                         color: AppColor.primaryColor,
                       ),
                       SizedBox(
                         width: 10,
                       ),
                       Text(
-                        'Play Audio',
+                        'Save Book',
                         style: TextStyle(color: AppColor.primaryColor),
                       ),
                     ],

@@ -1,7 +1,6 @@
 import 'package:audio_books/views/explore/widgets/explore_card.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
-
 import '../../constants/app_color.dart';
 
 class Explore extends StatefulWidget {
@@ -19,18 +18,13 @@ List explore = [
   {'icon': Icons.trending_down, 'explore': 'Hymns'},
 ];
 
-class _ExploreState extends State<Explore> with TickerProviderStateMixin {
-  late TabController tabController;
-
-  @override
-  void initState() {
-    tabController = TabController(length: 4, vsync: this);
-    super.initState();
-  }
-
+class _ExploreState extends State<Explore> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return DefaultTabController(
+      initialIndex: 0,
+      length: explore.length,
+      child: Scaffold(
         appBar: AppBar(
           backgroundColor: AppColor.primaryColor,
           title: const Text('Explore Market'),
@@ -41,98 +35,28 @@ class _ExploreState extends State<Explore> with TickerProviderStateMixin {
               child: Icon(Iconsax.search_favorite),
             )
           ],
+          bottom: TabBar(
+              labelColor: Colors.black,
+              indicatorColor: AppColor.tertiaryColor,
+              isScrollable: true,
+              indicator: null,
+              dividerColor: Colors.transparent,
+              tabs: explore
+                  .map(
+                    (e) => Text(e['explore']),
+                  )
+                  .toList()),
         ),
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: Column(
-              children: [
-                TabBar(
-                    controller: tabController,
-                    tabs: explore
-                        .map(
-                          (e) => Container(
-                            padding: const EdgeInsets.all(5),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5),
-                                border:
-                                    Border.all(color: AppColor.buttonColor)),
-                            child: Text(e['explore']),
-                          ),
-                        )
-                        .toList()),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height -
-                      kToolbarHeight -
-                      kBottomNavigationBarHeight,
-                  child: TabBarView(controller: tabController, children: const [
-                    ExploreCard(),
-                    ExploreCard(),
-                    ExploreCard(),
-                    ExploreCard(),
-                    ExploreCard(),
-                  ]),
-                ),
-              ],
-            ),
-          ),
-        ));
+        body: const Padding(
+          padding: EdgeInsets.all(15.0),
+          child: TabBarView(children: [
+            ExploreCard(),
+            ExploreCard(),
+            ExploreCard(),
+            ExploreCard(),
+          ]),
+        ),
+      ),
+    );
   }
 }
-
-// SingleChildScrollView(
-//   scrollDirection: Axis.horizontal,
-//   child: Row(
-//     children: explore
-//         .map((e) => GestureDetector(
-//               onTap: () {
-//                 print(e['explore']);
-//               },
-//               child: Container(
-//                 margin: const EdgeInsets.only(right: 10),
-//                 padding: const EdgeInsets.all(5),
-//                 decoration: BoxDecoration(
-//                     borderRadius: BorderRadius.circular(10),
-//                     border: Border.all(
-//                         color: AppColor.buttonColor)),
-//                 child: Row(
-//                   children: [
-//                     Icon(e['icon']),
-//                     const SizedBox(
-//                       width: 10,
-//                     ),
-//                     Text(e['explore'])
-//                   ],
-//                 ),
-//               ),
-//             ))
-//         .toList(),
-//   ),
-// ),
-
-
-// TabBar(
-                // controller: tabController,
-                // tabs: [
-                //   Tab(
-                //     child: Container(
-                //       margin: const EdgeInsets.only(right: 10),
-                //       padding: const EdgeInsets.all(5),
-                //       decoration: BoxDecoration(
-                //           borderRadius: BorderRadius.circular(10),
-                //           border: Border.all(color: AppColor.buttonColor)),
-                //       child: const Text('Trending'),
-                //     ),
-                //   ),
-                //   Tab(
-                //     child: Container(
-                //       margin: const EdgeInsets.only(right: 10),
-                //       padding: const EdgeInsets.all(5),
-                //       decoration: BoxDecoration(
-                //           borderRadius: BorderRadius.circular(10),
-                //           border: Border.all(color: AppColor.buttonColor)),
-                //       child: const Text('Romance'),
-                //     ),
-                //   ),
-                // ]
-                // ),
