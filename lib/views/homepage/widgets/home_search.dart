@@ -5,11 +5,11 @@ import '../../../services/api_service.dart';
 import '../../../services/fetchapi.dart';
 
 class SearchController extends GetxController {
-  var searchResults = <SearchResult>[].obs;
+  var searchResults = <VolumeInfo>[].obs;
 
   void search(String query) async {
     try {
-      List<SearchResult> results = await ApiService.searchBooks(query);
+      List<VolumeInfo> results = await fetchBooks(query);
       searchResults.value = results;
     } catch (e) {
       // Handle errors, e.g., show an error message to the user
@@ -26,7 +26,7 @@ class SearchScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColor.primaryColor,
+        backgroundColor: AppColor.secondaryColor,
       ),
       body: SingleChildScrollView(
         child: Obx(
@@ -57,12 +57,12 @@ class SearchScreen extends StatelessWidget {
                   shrinkWrap: true,
                   itemCount: searchController.searchResults.length,
                   itemBuilder: (context, index) {
-                    SearchResult result = searchController.searchResults[index];
+                    VolumeInfo result = searchController.searchResults[index];
                     return ListTile(
                       leading:
                           Image.network(result.imageLinks?.thumbnail ?? ''),
                       title: Text(result.title),
-                      subtitle: Text('Author: ${result.author}'),
+                      subtitle: Text('Author: ${result.authors}'),
                     );
                   },
                 ),

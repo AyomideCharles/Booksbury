@@ -16,12 +16,12 @@ class Explore extends StatefulWidget {
 }
 
 List<String> explore = [
-  'Dart',
+  'Drama',
   'Sports',
   'Children',
   'Greek',
-  'France',
-  'Africa'
+  'America',
+  'God of war'
 ];
 
 class _ExploreState extends State<Explore> {
@@ -38,7 +38,7 @@ class _ExploreState extends State<Explore> {
             Icon(Iconsax.notification),
             Padding(
               padding: EdgeInsets.only(right: 10, left: 10),
-              child: Icon(Iconsax.search_favorite),
+              child: Icon(Icons.search),
             )
           ],
           bottom: TabBar(
@@ -92,7 +92,7 @@ class _ExploreState extends State<Explore> {
                               borderRadius: BorderRadius.circular(5),
                               color: AppColor.secondaryColor,
                             ),
-                            padding: const EdgeInsets.all(10),
+                            padding: const EdgeInsets.all(5),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
