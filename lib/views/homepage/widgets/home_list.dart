@@ -14,7 +14,7 @@ class _HomeListState extends State<HomeList> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<VolumeInfo>>(
-      future: fetchBooks(),
+      future: trendingbooks(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(

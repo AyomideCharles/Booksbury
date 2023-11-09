@@ -1,5 +1,6 @@
 import 'package:audio_books/services/api_service.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import '../../../constants/app_color.dart';
 
@@ -30,7 +31,7 @@ class _BookInfoState extends State<BookInfo> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColor.primaryColor,
+        backgroundColor: AppColor.secondaryColor,
         title: const Text('Book Info'),
         centerTitle: true,
       ),
@@ -38,6 +39,22 @@ class _BookInfoState extends State<BookInfo> with TickerProviderStateMixin {
         child: Padding(
           padding: const EdgeInsets.all(15.0),
           child: Column(children: [
+            // ClipRRect(
+            //   borderRadius: BorderRadius.circular(10),
+            //   child: CachedNetworkImage(
+            //     // Replace Image.network with CachedNetworkImage
+            //     imageUrl: widget.booking.imageLinks!.thumbnail ?? '',
+            //     width: double.infinity,
+            //     height: MediaQuery.of(context).size.height * 0.3,
+            //     fit: BoxFit.fill,
+            //     filterQuality: FilterQuality.high,
+            //     placeholder: (context, url) => const Center(
+            //         child:
+            //             CircularProgressIndicator()), // Placeholder widget while loading
+            //     errorWidget: (context, url, error) => const Icon(
+            //         Icons.error), // Widget to display if there's an error
+            //   ),
+            // ),
             ClipRRect(
               borderRadius: BorderRadius.circular(10),
               child: Image.network(
@@ -136,53 +153,84 @@ class _BookInfoState extends State<BookInfo> with TickerProviderStateMixin {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              ElevatedButton(
+              ElevatedButton.icon(
                   style: ElevatedButton.styleFrom(
                       backgroundColor: AppColor.buttonColor,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(5))),
                   onPressed: () {},
-                  child: const Row(
-                    children: [
-                      Icon(
-                        Iconsax.book,
-                        color: AppColor.buttonColor_2,
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        'Start Reading',
-                        style: TextStyle(color: AppColor.buttonColor_2),
-                      ),
-                    ],
+                  icon: const Icon(
+                    Iconsax.book,
+                    color: AppColor.buttonColor_2,
+                  ),
+                  label: const Text(
+                    'Start Reading',
+                    style: TextStyle(color: AppColor.buttonColor_2),
                   )),
               const SizedBox(
                 width: 20,
               ),
-              ElevatedButton(
+              ElevatedButton.icon(
                   style: ElevatedButton.styleFrom(
                       backgroundColor: AppColor.buttonColor_2,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(5))),
-                  onPressed: () {},
-                  child: const Row(
-                    children: [
-                      Icon(
-                        Iconsax.document_download,
-                        color: AppColor.primaryColor,
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        'Save Book',
-                        style: TextStyle(color: AppColor.primaryColor),
-                      ),
-                    ],
-                  )),
+                  onPressed: () {
+                    showWarning();
+                  },
+                  icon: const Icon(
+                    Iconsax.document_download,
+                    color: AppColor.primaryColor,
+                  ),
+                  label: const Text(
+                    'Save Book',
+                    style: TextStyle(color: AppColor.primaryColor),
+                  ))
             ],
           )),
     );
+  }
+
+  Future showWarning() async {
+    await showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+            backgroundColor: AppColor.buttonColor,
+            title: Column(
+              children: [
+                const Text(
+                  'Added to your\n Library!!!',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontWeight: FontWeight.w500),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Image.asset(
+                  'assets/images/thumbsup.png',
+                ),
+              ],
+            ),
+            actions: [
+              ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5)),
+                      backgroundColor: AppColor.buttonColor_2),
+                  onPressed: () {
+                    Get.back(result: context);
+                  },
+                  child: const Text(
+                    'Okay',
+                    style:
+                        TextStyle(color: AppColor.primaryColor, fontSize: 14),
+                  ))
+            ],
+          );
+        });
   }
 }

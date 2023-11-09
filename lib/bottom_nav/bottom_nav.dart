@@ -1,7 +1,7 @@
 import 'package:audio_books/views/explore/explore.dart';
 import 'package:audio_books/views/homepage/home.dart';
 import 'package:audio_books/bottom_nav/profile.dart';
-import 'package:audio_books/bottom_nav/save.dart';
+import 'package:audio_books/views/savedbooks/save.dart';
 import 'package:audio_books/controllers/bottomnav_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -42,7 +42,7 @@ class NavBar extends StatelessWidget {
               BottomNavigationBarItem(
                   icon: Icon(Iconsax.activity), label: 'Explore'),
               BottomNavigationBarItem(
-                  icon: Icon(Iconsax.save_2), label: 'Saved'),
+                  icon: Icon(Iconsax.document_download), label: 'Saved'),
               BottomNavigationBarItem(
                   icon: Icon(Iconsax.profile_2user4), label: 'Profile')
             ],
