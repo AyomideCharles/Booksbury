@@ -52,31 +52,6 @@ class _HomeListState extends State<HomeList> {
               }).toList(),
             ),
           );
-          // return ListView.builder(
-          //     primary: F,
-          //     itemCount: books.length,
-          //     shrinkWrap: true,
-          //     itemBuilder: (context, index) {
-          //       return ListTile(
-          //         contentPadding: EdgeInsets.zero,
-          //         leading: books[index].imageLinks != null
-          //             ? ClipRRect(
-          //                 borderRadius: BorderRadius.circular(10),
-          //                 child: Image.network(
-          //                   books[index].imageLinks!.thumbnail ?? '',
-          //                   width: 100,
-          //                   fit: BoxFit.cover,
-          //                 ),
-          //               )
-          //             : const Icon(Icons.image),
-          //         title: Text(
-          //           books[index].title,
-          //           style: const TextStyle(
-          //               fontSize: 16, fontWeight: FontWeight.w500),
-          //         ),
-          //         subtitle: Text(books[index].subtitle ?? ''),
-          //       );
-          //     });
         }
       },
     );

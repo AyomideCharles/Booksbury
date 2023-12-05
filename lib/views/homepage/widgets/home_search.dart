@@ -1,4 +1,5 @@
 import 'package:audio_books/constants/app_color.dart';
+import 'package:audio_books/views/explore/widgets/bookinfo.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../services/api_service.dart';
@@ -17,10 +18,17 @@ class SearchController extends GetxController {
   }
 }
 
-class SearchScreen extends StatelessWidget {
+class SearchScreen extends StatefulWidget {
+  const SearchScreen({super.key});
+
+  @override
+  State<SearchScreen> createState() => _SearchScreenState();
+}
+
+class _SearchScreenState extends State<SearchScreen> {
   final SearchController searchController = Get.put(SearchController());
 
-  SearchScreen({super.key});
+  TextEditingController searchCancel = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +43,7 @@ class SearchScreen extends StatelessWidget {
             child: Column(
               children: [
                 TextField(
+                  controller: searchCancel,
                   onChanged: (query) {
                     if (query.isNotEmpty) {
                       searchController.search(query);
@@ -44,7 +53,9 @@ class SearchScreen extends StatelessWidget {
                     border: const OutlineInputBorder(),
                     hintText: 'Search Books...',
                     suffixIcon: IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        searchCancel.clear();
+                      },
                       icon: const Icon(Icons.cancel),
                     ),
                   ),
@@ -58,11 +69,16 @@ class SearchScreen extends StatelessWidget {
                   itemCount: searchController.searchResults.length,
                   itemBuilder: (context, index) {
                     VolumeInfo result = searchController.searchResults[index];
-                    return ListTile(
-                      leading:
-                          Image.network(result.imageLinks?.thumbnail ?? ''),
-                      title: Text(result.title),
-                      subtitle: Text('Author: ${result.authors}'),
+                    return GestureDetector(
+                      onTap: () {
+                        Get.to(BookInfo(booking: result));
+                      },
+                      child: ListTile(
+                        leading:
+                            Image.network(result.imageLinks?.thumbnail ?? ''),
+                        title: Text(result.title),
+                        subtitle: Text(result.authors.join()),
+                      ),
                     );
                   },
                 ),

@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:audio_books/services/api_service.dart';
 import 'package:http/http.dart' as http;
 
-// get request for popular books
+// get request for google api books
 Future<List<VolumeInfo>> fetchBooks(String query) async {
    const String baseUrl = 'https://www.googleapis.com/books/v1/volumes';
 
