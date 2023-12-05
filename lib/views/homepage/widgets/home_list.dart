@@ -11,10 +11,12 @@ class HomeList extends StatefulWidget {
 }
 
 class _HomeListState extends State<HomeList> {
+  String category = 'football';
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<VolumeInfo>>(
-      future: trendingbooks(),
+      future: fetchBooks(category),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(

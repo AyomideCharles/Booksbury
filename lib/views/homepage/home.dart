@@ -45,61 +45,61 @@ class Home extends StatelessWidget {
               icon: const Icon(Icons.search))
         ],
       ),
-      body: FutureBuilder(
-          // future: fetchBooks(),
-          future: trendingbooks(),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(child: CircularProgressIndicator());
-            } else if (snapshot.hasError) {
-              return Center(child: Text('Error: ${snapshot.error}'));
-            } else {
-              return ListView(
-                padding: const EdgeInsets.all(15),
-                children: const [
-                  HomeCard(),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  Text(
-                    'Popular',
-                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
-                  ),
-                  HomeList(),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  Text(
-                    'Trending',
-                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
-                  ),
-                  TrendingBooks()
-                ],
-              );
-            }
-          }),
-      // body: ListView(
-      //   padding: const EdgeInsets.all(15),
-      //   children: const [
-      //     HomeCard(),
-      //     SizedBox(
-      //       height: 15,
-      //     ),
-      //     Text(
-      //       'Popular',
-      //       style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
-      //     ),
-      //     HomeList(),
-      //     SizedBox(
-      //       height: 15,
-      //     ),
-      //     Text(
-      //       'Trending',
-      //       style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
-      //     ),
-      //     TrendingBooks()
-      //   ],
-      // ),
+      // body: FutureBuilder(
+      //     // future: fetchBooks(),
+      //     future: trendingbooks(),
+      //     builder: (context, snapshot) {
+      //       if (snapshot.connectionState == ConnectionState.waiting) {
+      //         return const Center(child: CircularProgressIndicator());
+      //       } else if (snapshot.hasError) {
+      //         return Center(child: Text('Error: ${snapshot.error}'));
+      //       } else {
+      //         return ListView(
+      //           padding: const EdgeInsets.all(15),
+      //           children: const [
+      //             HomeCard(),
+      //             SizedBox(
+      //               height: 15,
+      //             ),
+      //             Text(
+      //               'Popular',
+      //               style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
+      //             ),
+      //             HomeList(),
+      //             SizedBox(
+      //               height: 15,
+      //             ),
+      //             Text(
+      //               'Trending',
+      //               style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
+      //             ),
+      //             TrendingBooks()
+      //           ],
+      //         );
+      //       }
+      //     }),
+      body: ListView(
+        padding: const EdgeInsets.all(15),
+        children: const [
+          HomeCard(),
+          SizedBox(
+            height: 15,
+          ),
+          Text(
+            'Popular',
+            style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
+          ),
+          HomeList(),
+          SizedBox(
+            height: 15,
+          ),
+          Text(
+            'Trending',
+            style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
+          ),
+          TrendingBooks()
+        ],
+      ),
     );
   }
 }
