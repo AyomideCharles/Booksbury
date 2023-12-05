@@ -1,12 +1,12 @@
 import 'package:audio_books/views/explore/explore.dart';
 import 'package:audio_books/views/homepage/home.dart';
-import 'package:audio_books/bottom_nav/profile.dart';
+import 'package:audio_books/views/profile/profile.dart';
 import 'package:audio_books/views/savedbooks/save.dart';
 import 'package:audio_books/controllers/bottomnav_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
-
 import '../constants/app_color.dart';
 
 class NavBar extends StatelessWidget {
@@ -27,24 +27,23 @@ class NavBar extends StatelessWidget {
             backgroundColor: AppColor.secondaryColor,
             elevation: 8,
             onTap: controller.changeTabIndex,
-            showSelectedLabels: false,
-            showUnselectedLabels: false,
+            showSelectedLabels: true,
+            showUnselectedLabels: true,
             selectedItemColor: Colors.black,
             currentIndex: controller.tabIndex,
-            // fixedColor: AppColor.buttonColor_2,
             type: BottomNavigationBarType.fixed,
             items: const [
               BottomNavigationBarItem(
                   icon: Icon(
-                    Iconsax.home4,
+                    FeatherIcons.home,
                   ),
                   label: 'Home'),
               BottomNavigationBarItem(
-                  icon: Icon(Iconsax.activity), label: 'Explore'),
+                  icon: Icon(FeatherIcons.compass), label: 'Explore'),
               BottomNavigationBarItem(
-                  icon: Icon(Iconsax.document_download), label: 'Saved'),
+                  icon: Icon(FeatherIcons.download), label: 'Saved'),
               BottomNavigationBarItem(
-                  icon: Icon(Iconsax.profile_2user4), label: 'Profile')
+                  icon: Icon(FeatherIcons.settings), label: 'Settings')
             ],
           ),
         ),

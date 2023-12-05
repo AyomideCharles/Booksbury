@@ -11,7 +11,7 @@ class TrendingBooks extends StatefulWidget {
 }
 
 class _HomeListState extends State<TrendingBooks> {
-  String category = 'greek';
+  String category = 'games';
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<VolumeInfo>>(
@@ -39,8 +39,8 @@ class _HomeListState extends State<TrendingBooks> {
                               borderRadius: BorderRadius.circular(5),
                               child: Image.network(
                                 book.imageLinks!.thumbnail ?? '',
-                                width: 100,
-                                height: 150,
+                                width: 150,
+                                height: 190,
                                 fit: BoxFit.cover,
                               ),
                             ),

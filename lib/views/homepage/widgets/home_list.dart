@@ -11,7 +11,7 @@ class HomeList extends StatefulWidget {
 }
 
 class _HomeListState extends State<HomeList> {
-  String category = 'football';
+  String category = 'drama';
 
   @override
   Widget build(BuildContext context) {
@@ -40,8 +40,8 @@ class _HomeListState extends State<HomeList> {
                               borderRadius: BorderRadius.circular(5),
                               child: Image.network(
                                 book.imageLinks!.thumbnail ?? '',
-                                width: 100,
-                                height: 150,
+                                width: 150,
+                                height: 190,
                                 fit: BoxFit.cover,
                               ),
                             ),
