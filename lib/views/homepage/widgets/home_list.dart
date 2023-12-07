@@ -12,7 +12,6 @@ class HomeList extends StatefulWidget {
 
 class _HomeListState extends State<HomeList> {
   String category = 'drama';
-
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<VolumeInfo>>(
@@ -34,18 +33,17 @@ class _HomeListState extends State<HomeList> {
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: book.imageLinks != null
-                      ? Column(
-                          children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(5),
-                              child: Image.network(
-                                book.imageLinks!.thumbnail ?? '',
-                                width: 150,
-                                height: 190,
-                                fit: BoxFit.cover,
-                              ),
+                      ? Card(
+                          elevation: 8,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            child: Image.network(
+                              book.imageLinks!.thumbnail ?? '',
+                              width: 150,
+                              height: 190,
+                              fit: BoxFit.cover,
                             ),
-                          ],
+                          ),
                         )
                       : const Icon(Icons.image),
                 );

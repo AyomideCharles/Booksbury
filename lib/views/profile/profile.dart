@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:iconsax/iconsax.dart';
 
+import '../../constants/app_color.dart';
+
 class Profile extends StatefulWidget {
   const Profile({super.key});
 
@@ -10,7 +12,6 @@ class Profile extends StatefulWidget {
 }
 
 List settings = [
-  {'title': 'Dark Mode', 'leading': FeatherIcons.moon},
   {'title': 'Notification', 'leading': Iconsax.notification},
   {'title': 'Privacy', 'leading': Icons.privacy_tip},
   {'title': 'Language', 'leading': Icons.language},
@@ -18,28 +19,51 @@ List settings = [
 ];
 
 class _ProfileState extends State<Profile> {
+  bool switchValue = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.only(top: 20),
-        child: ListView.builder(
-            itemCount: settings.length,
-            itemBuilder: (context, index) {
-              return Column(
-                children: [
-                  ListTile(
-                    leading: Icon(settings[index]['leading']),
-                    title: Text(settings[index]['title']),
-                    trailing: const Icon(FeatherIcons.navigation),
-                  ),
-                  const Divider(
-                    endIndent: 15,
-                    indent: 15,
-                  )
-                ],
-              );
-            }),
+      appBar: AppBar(
+        backgroundColor: AppColor.secondaryColor,
+      ),
+      body: Column(
+        children: [
+          ListTile(
+            leading: const Icon(FeatherIcons.moon),
+            title: const Text('Dark Mode'),
+            trailing: Switch(
+                activeColor: AppColor.buttonColor,
+                value: switchValue,
+                onChanged: (value) {
+                  setState(() {
+                    switchValue = value;
+                  });
+                }),
+          ),
+          const Divider(
+            endIndent: 15,
+            indent: 15,
+          ),
+          ListView.builder(
+              padding: EdgeInsets.zero,
+              shrinkWrap: true,
+              itemCount: settings.length,
+              itemBuilder: (context, index) {
+                return Column(
+                  children: [
+                    ListTile(
+                      leading: Icon(settings[index]['leading']),
+                      title: Text(settings[index]['title']),
+                      trailing: const Icon(FeatherIcons.arrowRight),
+                    ),
+                    const Divider(
+                      endIndent: 15,
+                      indent: 15,
+                    )
+                  ],
+                );
+              }),
+        ],
       ),
     );
   }
