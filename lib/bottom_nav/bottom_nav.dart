@@ -6,7 +6,6 @@ import 'package:audio_books/controllers/bottomnav_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:get/get.dart';
-import 'package:iconsax/iconsax.dart';
 import '../constants/app_color.dart';
 
 class NavBar extends StatelessWidget {

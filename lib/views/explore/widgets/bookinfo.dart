@@ -39,22 +39,6 @@ class _BookInfoState extends State<BookInfo> with TickerProviderStateMixin {
         child: Padding(
           padding: const EdgeInsets.all(15.0),
           child: Column(children: [
-            // ClipRRect(
-            //   borderRadius: BorderRadius.circular(10),
-            //   child: CachedNetworkImage(
-            //     // Replace Image.network with CachedNetworkImage
-            //     imageUrl: widget.booking.imageLinks!.thumbnail ?? '',
-            //     width: double.infinity,
-            //     height: MediaQuery.of(context).size.height * 0.3,
-            //     fit: BoxFit.fill,
-            //     filterQuality: FilterQuality.high,
-            //     placeholder: (context, url) => const Center(
-            //         child:
-            //             CircularProgressIndicator()), // Placeholder widget while loading
-            //     errorWidget: (context, url, error) => const Icon(
-            //         Icons.error), // Widget to display if there's an error
-            //   ),
-            // ),
             ClipRRect(
               borderRadius: BorderRadius.circular(10),
               child: Image.network(
@@ -158,7 +142,9 @@ class _BookInfoState extends State<BookInfo> with TickerProviderStateMixin {
                       backgroundColor: AppColor.buttonColor,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(5))),
-                  onPressed: () {},
+                  onPressed: () {
+                    // there's going to be a url launcher here for the books
+                  },
                   icon: const Icon(
                     Iconsax.book,
                     color: AppColor.buttonColor_2,
@@ -176,7 +162,45 @@ class _BookInfoState extends State<BookInfo> with TickerProviderStateMixin {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(5))),
                   onPressed: () {
-                    showWarning();
+                    // there's going to be a function to save books here
+                    Get.dialog(
+                      barrierDismissible: false,
+                      AlertDialog(
+                        backgroundColor: AppColor.buttonColor,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10)),
+                        title: Column(
+                          children: [
+                            const Text(
+                              'Added to your\n Library!!!',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(fontWeight: FontWeight.w500),
+                            ),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            Image.asset(
+                              'assets/images/thumbsup.png',
+                            ),
+                          ],
+                        ),
+                        actions: [
+                          ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(5)),
+                                  backgroundColor: AppColor.buttonColor_2),
+                              onPressed: () {
+                                Get.back();
+                              },
+                              child: const Text(
+                                'Okay',
+                                style: TextStyle(
+                                    color: AppColor.primaryColor, fontSize: 14),
+                              ))
+                        ],
+                      ),
+                    );
                   },
                   icon: const Icon(
                     Iconsax.document_download,
@@ -189,51 +213,5 @@ class _BookInfoState extends State<BookInfo> with TickerProviderStateMixin {
             ],
           )),
     );
-  }
-
-
-
-// alert dialog for added books
-  Future showWarning() async {
-    await showDialog(
-        barrierDismissible: false,
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-            backgroundColor: AppColor.buttonColor,
-            title: Column(
-              children: [
-                const Text(
-                  'Added to your\n Library!!!',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontWeight: FontWeight.w500),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Image.asset(
-                  'assets/images/thumbsup.png',
-                ),
-              ],
-            ),
-            actions: [
-              ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5)),
-                      backgroundColor: AppColor.buttonColor_2),
-                  onPressed: () {
-                    Get.back(result: context);
-                  },
-                  child: const Text(
-                    'Okay',
-                    style:
-                        TextStyle(color: AppColor.primaryColor, fontSize: 14),
-                  ))
-            ],
-          );
-        });
   }
 }

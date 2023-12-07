@@ -24,7 +24,7 @@ class _ProfileState extends State<Profile> {
       body: Padding(
         padding: const EdgeInsets.only(top: 20),
         child: ListView.builder(
-            itemCount: 5,
+            itemCount: settings.length,
             itemBuilder: (context, index) {
               return Column(
                 children: [

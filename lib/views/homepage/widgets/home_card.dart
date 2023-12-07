@@ -30,48 +30,111 @@ class HomeCard extends StatelessWidget {
                 borderRadius: const BorderRadius.only(
                     bottomLeft: Radius.circular(10),
                     bottomRight: Radius.circular(10))),
-            padding: const EdgeInsets.all(10),
-            child: const Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            padding: const EdgeInsets.all(8),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                const Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       'Food in the Ancient',
-                      style: TextStyle(color: Colors.white),
+                      style: TextStyle(color: Colors.white, fontSize: 14),
                     ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Text(
+                      'World from A to Z',
+                      style: TextStyle(color: Colors.white, fontSize: 14),
+                    )
+                  ],
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
                     Row(
                       children: [
-                        Icon(Icons.play_arrow),
-                        Text(
+                        Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              color: Colors.white,
+                            ),
+                            child: const Icon(
+                              Icons.play_arrow,
+                              size: 18,
+                            )),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        const Text(
                           '15h Listen',
                           style: TextStyle(color: Colors.white),
                         )
                       ],
-                    )
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'World from A to Z',
-                      style: TextStyle(color: Colors.white),
                     ),
-                    Row(
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    const Row(
                       children: [
-                        Icon(Icons.person),
+                        Icon(
+                          Icons.person,
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
                         Text(
                           'Andrew Dalby',
                           style: TextStyle(color: Colors.white),
                         )
                       ],
-                    )
+                    ),
                   ],
                 )
               ],
             ),
+            // child: const Column(
+            //   crossAxisAlignment: CrossAxisAlignment.start,
+            //   children: [
+            //     Row(
+            //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //       children: [
+            //         Text(
+            //           'Food in the Ancient',
+            //           style: TextStyle(color: Colors.white),
+            //         ),
+            //         Row(
+            //           children: [
+            //             Icon(Icons.play_arrow),
+            //             Text(
+            //               '15h Listen',
+            //               style: TextStyle(color: Colors.white),
+            //             )
+            //           ],
+            //         )
+            //       ],
+            //     ),
+            //     Row(
+            //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //       children: [
+            //         Text(
+            //           'World from A to Z',
+            //           style: TextStyle(color: Colors.white),
+            //         ),
+            //         Row(
+            //           children: [
+            //             Icon(Icons.person),
+            //             Text(
+            //               'Andrew Dalby',
+            //               style: TextStyle(color: Colors.white),
+            //             )
+            //           ],
+            //         )
+            //       ],
+            //     )
+            //   ],
+            // ),
           ),
         )
       ]),

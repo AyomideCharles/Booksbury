@@ -13,22 +13,50 @@ class SavedPage extends StatelessWidget {
         backgroundColor: AppColor.secondaryColor,
       ),
       body: ListView.builder(
+          padding: const EdgeInsets.all(15),
           itemCount: explorebooks.length,
           itemBuilder: (context, index) {
             return Row(
               children: [
-                Image.network(
-                  explorebooks[index].image,
-                  width: 100,
+                Card(
+                  elevation: 4,
+                  child: Image.network(
+                    explorebooks[index].image,
+                    height: 150,
+                    width: 100,
+                    fit: BoxFit.cover,
+                  ),
                 ),
-                Text(explorebooks[index].title),
+                const SizedBox(
+                  width: 10,
+                ),
+                Flexible(
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          explorebooks[index].title,
+                          style: const TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.w500),
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        Text(
+                          explorebooks[index].author,
+                          style: const TextStyle(color: AppColor.buttonColor),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        const Text(
+                          'wextcryvtubyinfuunlofhup efgepf7egpf e9f fvyvfief lhef vlvifvlefv;bceiybcfleyfgbed9fugbdfugbfu',
+                          style: TextStyle(color: AppColor.buttonColor_2),
+                        ),
+                      ]),
+                )
               ],
             );
-            // return ListTile(
-            //   leading: Image.network(explorebooks[index].image),
-            //   title: Text(explorebooks[index].title),
-            //   subtitle: Text(explorebooks[index].author),
-            // );
           }),
     );
   }
