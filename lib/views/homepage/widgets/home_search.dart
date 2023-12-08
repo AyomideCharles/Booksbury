@@ -97,7 +97,7 @@ class _SearchScreenState extends State<SearchScreen> {
                       VolumeInfo result = searchController.searchResults[index];
                       return GestureDetector(
                         onTap: () {
-                          Get.to(BookInfo(booking: result));
+                          Get.to(() => BookInfo(booking: result));
                         },
                         child: ListTile(
                           leading:

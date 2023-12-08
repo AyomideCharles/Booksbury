@@ -58,8 +58,10 @@ class SavedPage extends StatelessWidget {
                             height: 10,
                           ),
                           const Text(
-                            'wextcryvtubyinfuunlofhup efgepf7egpf e9f fvyvfief lhef vlvifvlefv;bceiybcfleyfgbed9fugbdfugbfu',
+                            'In the mystical realm of Eldoria, where magic intertwines with the mundane, a tale unfolds that transcends time and space. "Whispers of Eternity" follows the journey of Elara, a reluctant heroine burdened with a destiny she never sought. In the mystical realm of Eldoria, where magic intertwines with the mundane, a tale unfolds that transcends time and space. "Whispers of Eternity" follows the journey of Elara, a reluctant heroine burdened with a destiny she never sought.',
                             style: TextStyle(color: AppColor.buttonColor_2),
+                            maxLines: 3,
+                            overflow: TextOverflow.ellipsis,
                           ),
                         ]),
                   )
