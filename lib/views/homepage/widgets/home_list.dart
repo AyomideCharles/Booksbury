@@ -1,7 +1,9 @@
 import 'package:audio_books/constants/app_color.dart';
 import 'package:audio_books/services/api_service.dart';
 import 'package:audio_books/services/fetchapi.dart';
+import 'package:audio_books/views/explore/widgets/bookinfo.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class HomeList extends StatefulWidget {
   const HomeList({super.key});
@@ -31,22 +33,26 @@ class _HomeListState extends State<HomeList> {
             child: Row(
               children: books.map((book) {
                 return Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: book.imageLinks != null
-                      ? Card(
-                          elevation: 8,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(10),
-                            child: Image.network(
-                              book.imageLinks!.thumbnail ?? '',
-                              width: 150,
-                              height: 190,
-                              fit: BoxFit.cover,
+                    padding: const EdgeInsets.all(8.0),
+                    child: book.imageLinks != null
+                        ? GestureDetector(
+                            onTap: () {
+                              Get.to(() => BookInfo(booking: book));
+                            },
+                            child: Card(
+                              elevation: 8,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(10),
+                                child: Image.network(
+                                  book.imageLinks!.thumbnail ?? '',
+                                  width: 150,
+                                  height: 190,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
                             ),
-                          ),
-                        )
-                      : const Icon(Icons.image),
-                );
+                          )
+                        : const Text('Nothing to show'));
               }).toList(),
             ),
           );

@@ -45,7 +45,7 @@ class Home extends StatelessWidget {
         ],
       ),
       body: ListView(
-        padding: const EdgeInsets.all(15),
+        padding: const EdgeInsets.all(10),
         children: const [
           HomeCard(),
           SizedBox(
