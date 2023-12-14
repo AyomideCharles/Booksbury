@@ -10,6 +10,8 @@ class SavedPage extends StatefulWidget {
   State<SavedPage> createState() => _SavedPageState();
 }
 
+enum Actions { delete }
+
 class _SavedPageState extends State<SavedPage> {
   @override
   Widget build(BuildContext context) {
@@ -25,14 +27,25 @@ class _SavedPageState extends State<SavedPage> {
             return Padding(
               padding: const EdgeInsets.only(bottom: 10),
               child: Slidable(
-                key: const ValueKey(0),
-                endActionPane: const ActionPane(
-                  motion: ScrollMotion(),
+                // key: const ValueKey(0),
+                startActionPane: ActionPane(
+                  motion: const ScrollMotion(),
                   children: [
                     SlidableAction(
-                      // onPressed: deleteBook(index),
-                      onPressed: doNothing,
-                      backgroundColor: Color(0xFFFE4A49),
+                      onPressed: (context) => doNothing(index, Actions.delete),
+                      backgroundColor: const Color(0xFFFE4A49),
+                      foregroundColor: Colors.white,
+                      icon: Icons.delete,
+                      label: 'Delete',
+                    ),
+                  ],
+                ),
+                endActionPane: ActionPane(
+                  motion: const ScrollMotion(),
+                  children: [
+                    SlidableAction(
+                      onPressed: (context) => doNothing(index, Actions.delete),
+                      backgroundColor: const Color(0xFFFE4A49),
                       foregroundColor: Colors.white,
                       icon: Icons.delete,
                       label: 'Delete',
@@ -95,4 +108,6 @@ class _SavedPageState extends State<SavedPage> {
   }
 }
 
-void doNothing(BuildContext context) {}
+void doNothing(int index, Actions actions) {
+  explorebooks.removeAt(index);
+}

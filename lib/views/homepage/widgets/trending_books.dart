@@ -32,28 +32,26 @@ class _HomeListState extends State<TrendingBooks> {
             scrollDirection: Axis.horizontal,
             child: Row(
               children: books.map((book) {
-                return Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: book.imageLinks != null
-                      ? GestureDetector(
-                          onTap: () {
-                            Get.to(() => BookInfo(booking: book));
-                          },
-                          child: Card(
-                            elevation: 8,
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(10),
-                              child: Image.network(
-                                book.imageLinks!.thumbnail ?? '',
-                                width: 150,
-                                height: 190,
-                                fit: BoxFit.cover,
-                              ),
+                return book.imageLinks != null
+                    ? GestureDetector(
+                        onTap: () {
+                          Get.to(() => BookInfo(booking: book));
+                        },
+                        child: Card(
+                          margin: const EdgeInsets.only(right: 20),
+                          elevation: 8,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            child: Image.network(
+                              book.imageLinks!.thumbnail ?? '',
+                              width: 150,
+                              height: 190,
+                              fit: BoxFit.cover,
                             ),
                           ),
-                        )
-                      : const Icon(Icons.image),
-                );
+                        ),
+                      )
+                    : const Icon(Icons.image);
               }).toList(),
             ),
           );

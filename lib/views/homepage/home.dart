@@ -55,6 +55,9 @@ class Home extends StatelessWidget {
             'Popular',
             style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
           ),
+          SizedBox(
+            height: 15,
+          ),
           HomeList(),
           SizedBox(
             height: 15,
@@ -62,6 +65,9 @@ class Home extends StatelessWidget {
           Text(
             'Trending',
             style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
+          ),
+          SizedBox(
+            height: 5,
           ),
           TrendingBooks()
         ],

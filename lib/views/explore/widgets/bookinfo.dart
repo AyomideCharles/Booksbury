@@ -177,7 +177,6 @@ class _BookInfoState extends State<BookInfo> with TickerProviderStateMixin {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(5))),
                   onPressed: () {
-                    // there's going to be a function to save books here
                     Get.dialog(
                       barrierDismissible: false,
                       AlertDialog(
