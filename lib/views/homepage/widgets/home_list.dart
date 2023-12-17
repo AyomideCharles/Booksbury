@@ -13,7 +13,7 @@ class HomeList extends StatefulWidget {
 }
 
 class _HomeListState extends State<HomeList> {
-  String category = 'movies';
+  String category = 'europe';
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<VolumeInfo>>(

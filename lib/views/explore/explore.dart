@@ -16,7 +16,7 @@ class Explore extends StatefulWidget {
 }
 
 List<String> explore = [
-  'Music',
+  'Norse',
   'Sports',
   'Children',
   'Greek',

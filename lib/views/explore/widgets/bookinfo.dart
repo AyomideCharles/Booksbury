@@ -177,6 +177,7 @@ class _BookInfoState extends State<BookInfo> with TickerProviderStateMixin {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(5))),
                   onPressed: () {
+                    
                     Get.dialog(
                       barrierDismissible: false,
                       AlertDialog(

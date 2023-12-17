@@ -20,6 +20,11 @@ class _SavedPageState extends State<SavedPage> {
         title: const Text('Saved Books'),
         backgroundColor: AppColor.secondaryColor,
       ),
+      // body: ListView.builder(
+      //     itemCount: 10,
+      //     itemBuilder: (context, index) {
+      //       return const Center(child: Text('WElcome'));
+      //     }),
       body: ListView.builder(
           padding: const EdgeInsets.all(15),
           itemCount: explorebooks.length,
@@ -106,8 +111,10 @@ class _SavedPageState extends State<SavedPage> {
           }),
     );
   }
-}
 
-void doNothing(int index, Actions actions) {
-  explorebooks.removeAt(index);
+  void doNothing(int index, Actions actions) {
+    setState(() {
+      explorebooks.removeAt(index);
+    });
+  }
 }
