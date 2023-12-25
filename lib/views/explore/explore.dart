@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:iconsax/iconsax.dart';
 import '../../constants/app_color.dart';
-import '../../model/explorebooks_model.dart';
 import '../../services/api_service.dart';
 import '../../services/fetchapi.dart';
 import 'widgets/bookinfo.dart';
@@ -130,12 +129,6 @@ class _ExploreState extends State<Explore> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
-                                        Text(
-                                          '\$${explorebooks[index].price.toString()}',
-                                          style: const TextStyle(
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.w500),
-                                        ),
                                         ElevatedButton(
                                             style: ElevatedButton.styleFrom(
                                                 backgroundColor: Colors.black,
@@ -145,7 +138,7 @@ class _ExploreState extends State<Explore> {
                                                             5))),
                                             onPressed: () {},
                                             child: const Text(
-                                              'Buy',
+                                              'Read More',
                                               style: TextStyle(
                                                   color: AppColor.primaryColor),
                                             ))

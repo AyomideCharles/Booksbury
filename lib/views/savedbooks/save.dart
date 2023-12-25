@@ -2,15 +2,18 @@ import 'package:audio_books/constants/app_color.dart';
 import 'package:audio_books/model/explorebooks_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:get/get.dart';
 
 class SavedPage extends StatefulWidget {
-  const SavedPage({super.key});
+  const SavedPage({
+    super.key,
+  });
 
   @override
   State<SavedPage> createState() => _SavedPageState();
 }
 
-enum Actions { delete }
+// enum Actions { delete }
 
 class _SavedPageState extends State<SavedPage> {
   @override
@@ -20,11 +23,6 @@ class _SavedPageState extends State<SavedPage> {
         title: const Text('Saved Books'),
         backgroundColor: AppColor.secondaryColor,
       ),
-      // body: ListView.builder(
-      //     itemCount: 10,
-      //     itemBuilder: (context, index) {
-      //       return const Center(child: Text('WElcome'));
-      //     }),
       body: ListView.builder(
           padding: const EdgeInsets.all(15),
           itemCount: explorebooks.length,
@@ -32,24 +30,14 @@ class _SavedPageState extends State<SavedPage> {
             return Padding(
               padding: const EdgeInsets.only(bottom: 10),
               child: Slidable(
-                // key: const ValueKey(0),
-                startActionPane: ActionPane(
-                  motion: const ScrollMotion(),
-                  children: [
-                    SlidableAction(
-                      onPressed: (context) => doNothing(index, Actions.delete),
-                      backgroundColor: const Color(0xFFFE4A49),
-                      foregroundColor: Colors.white,
-                      icon: Icons.delete,
-                      label: 'Delete',
-                    ),
-                  ],
-                ),
                 endActionPane: ActionPane(
                   motion: const ScrollMotion(),
                   children: [
                     SlidableAction(
-                      onPressed: (context) => doNothing(index, Actions.delete),
+                      onPressed: (context) {
+                        showSnack();
+                        doNothing(index);
+                      },
                       backgroundColor: const Color(0xFFFE4A49),
                       foregroundColor: Colors.white,
                       icon: Icons.delete,
@@ -112,9 +100,17 @@ class _SavedPageState extends State<SavedPage> {
     );
   }
 
-  void doNothing(int index, Actions actions) {
+  void doNothing(int index) {
     setState(() {
       explorebooks.removeAt(index);
     });
+  }
+
+  void showSnack() {
+    Get.snackbar("Item removed", "This is a simple snackbar message.",
+        colorText: AppColor.tertiaryColor,
+        backgroundColor: AppColor.primaryColor,
+        snackPosition: SnackPosition.BOTTOM,
+        duration: const Duration(seconds: 2));
   }
 }

@@ -28,7 +28,7 @@ class _BookInfoState extends State<BookInfo> with TickerProviderStateMixin {
     super.initState();
   }
 
-  // Function to launch a URL.
+  // Function to launch a URL to read books
   Future<void> _launchUrl(String url) async {
     final Uri urll = Uri.parse(url);
 
@@ -36,6 +36,9 @@ class _BookInfoState extends State<BookInfo> with TickerProviderStateMixin {
       throw Exception('Could not launch $urll');
     }
   }
+
+  List<VolumeInfo> books = [];
+  List<VolumeInfo> savedBooks = [];
 
   @override
   Widget build(BuildContext context) {
@@ -177,7 +180,6 @@ class _BookInfoState extends State<BookInfo> with TickerProviderStateMixin {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(5))),
                   onPressed: () {
-                    
                     Get.dialog(
                       barrierDismissible: false,
                       AlertDialog(
