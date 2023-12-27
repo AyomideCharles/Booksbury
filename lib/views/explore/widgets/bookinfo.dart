@@ -37,8 +37,6 @@ class _BookInfoState extends State<BookInfo> with TickerProviderStateMixin {
     }
   }
 
-  List<VolumeInfo> books = [];
-  List<VolumeInfo> savedBooks = [];
 
   @override
   Widget build(BuildContext context) {
@@ -179,7 +177,7 @@ class _BookInfoState extends State<BookInfo> with TickerProviderStateMixin {
                       backgroundColor: AppColor.buttonColor_2,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(5))),
-                  onPressed: () {
+                  onPressed: () {                 
                     Get.dialog(
                       barrierDismissible: false,
                       AlertDialog(

@@ -18,7 +18,14 @@ class NavBar extends StatelessWidget {
       return Scaffold(
         body: IndexedStack(
           index: controller.tabIndex,
-          children: const [Home(), Explore(), SavedPage(), Profile()],
+          children: const [
+            Home(),
+            Explore(),
+            SavedPage(
+              
+            ),
+            Profile()
+          ],
         ),
         bottomNavigationBar: SizedBox(
           height: 80,

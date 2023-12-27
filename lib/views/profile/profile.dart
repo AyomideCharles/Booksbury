@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
 import '../../constants/app_color.dart';
@@ -18,6 +19,13 @@ List settings = [
   {'title': 'Report a Problem', 'leading': Icons.report},
 ];
 
+  RxBool isDarkMode = false.obs;
+
+  void toggleTheme() {
+    isDarkMode.value = !isDarkMode.value;
+    Get.changeTheme(Get.isDarkMode ? ThemeData.dark() : ThemeData.light());
+  }
+
 class _ProfileState extends State<Profile> {
   bool switchValue = false;
   @override
@@ -29,6 +37,11 @@ class _ProfileState extends State<Profile> {
       body: Column(
         children: [
           ListTile(
+            onTap: () {
+              setState(() {
+                
+              });
+            },
             leading: const Icon(FeatherIcons.moon),
             title: const Text('Dark Mode'),
             trailing: Switch(
