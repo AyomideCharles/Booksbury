@@ -37,7 +37,6 @@ class _BookInfoState extends State<BookInfo> with TickerProviderStateMixin {
     }
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -177,7 +176,8 @@ class _BookInfoState extends State<BookInfo> with TickerProviderStateMixin {
                       backgroundColor: AppColor.buttonColor_2,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(5))),
-                  onPressed: () {                 
+                  onPressed: () {
+                    saveBook();
                     Get.dialog(
                       barrierDismissible: false,
                       AlertDialog(
@@ -229,4 +229,14 @@ class _BookInfoState extends State<BookInfo> with TickerProviderStateMixin {
           )),
     );
   }
+
+  void saveBook() {
+    setState(() {
+      SavedBooksManager.savedBooks.add(widget.booking);
+    });
+  }
+}
+
+class SavedBooksManager {
+  static List<VolumeInfo> savedBooks = [];
 }

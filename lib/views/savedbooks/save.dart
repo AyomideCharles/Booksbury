@@ -1,5 +1,5 @@
 import 'package:audio_books/constants/app_color.dart';
-import 'package:audio_books/model/explorebooks_model.dart';
+import 'package:audio_books/views/explore/widgets/bookinfo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
@@ -13,8 +13,6 @@ class SavedPage extends StatefulWidget {
   State<SavedPage> createState() => _SavedPageState();
 }
 
-// enum Actions { delete }
-
 class _SavedPageState extends State<SavedPage> {
   @override
   Widget build(BuildContext context) {
@@ -25,7 +23,7 @@ class _SavedPageState extends State<SavedPage> {
       ),
       body: ListView.builder(
           padding: const EdgeInsets.all(15),
-          itemCount: explorebooks.length,
+          itemCount: SavedBooksManager.savedBooks.length,
           itemBuilder: (context, index) {
             return Padding(
               padding: const EdgeInsets.only(bottom: 10),
@@ -52,7 +50,9 @@ class _SavedPageState extends State<SavedPage> {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(10),
                         child: Image.network(
-                          explorebooks[index].image,
+                          SavedBooksManager
+                                  .savedBooks[index].imageLinks!.thumbnail ??
+                              '',
                           height: 150,
                           width: 100,
                           fit: BoxFit.cover,
@@ -67,7 +67,7 @@ class _SavedPageState extends State<SavedPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              explorebooks[index].title,
+                              SavedBooksManager.savedBooks[index].title,
                               style: const TextStyle(
                                   fontSize: 18, fontWeight: FontWeight.w500),
                             ),
@@ -75,7 +75,8 @@ class _SavedPageState extends State<SavedPage> {
                               height: 5,
                             ),
                             Text(
-                              explorebooks[index].author,
+                              SavedBooksManager.savedBooks[index].authors
+                                  .join(),
                               style: const TextStyle(
                                   color: AppColor.buttonColor,
                                   fontSize: 16,
@@ -102,7 +103,7 @@ class _SavedPageState extends State<SavedPage> {
 
   void doNothing(int index) {
     setState(() {
-      explorebooks.removeAt(index);
+      SavedBooksManager.savedBooks.removeAt(index);
     });
   }
 
@@ -114,4 +115,3 @@ class _SavedPageState extends State<SavedPage> {
         duration: const Duration(seconds: 2));
   }
 }
-
