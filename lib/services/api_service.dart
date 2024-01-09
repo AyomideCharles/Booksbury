@@ -484,19 +484,18 @@
 // // //     }
 // // // }
 
-
 class VolumeInfo {
   String title;
   List<String> authors;
   String? publisher;
-  String publishedDate;
+  String? publishedDate;
   String? description;
   int pageCount;
   bool allowAnonLogging;
-  String contentVersion;
-  String previewLink;
-  String infoLink;
-  String canonicalVolumeLink;
+  String? contentVersion;
+  String? previewLink;
+  String? infoLink;
+  String? canonicalVolumeLink;
   List<String>? categories;
   int? averageRating;
   int? ratingsCount;
@@ -535,11 +534,15 @@ class VolumeInfo {
       previewLink: json['previewLink'],
       infoLink: json['infoLink'],
       canonicalVolumeLink: json['canonicalVolumeLink'],
-      categories: json['categories'] != null ? List<String>.from(json['categories']) : null,
+      categories: json['categories'] != null
+          ? List<String>.from(json['categories'])
+          : null,
       averageRating: json['averageRating'],
       ratingsCount: json['ratingsCount'],
       subtitle: json['subtitle'],
-      imageLinks: json['imageLinks'] != null ? ImageLinks.fromJson(json['imageLinks']) : null,
+      imageLinks: json['imageLinks'] != null
+          ? ImageLinks.fromJson(json['imageLinks'])
+          : null,
     );
   }
 }
@@ -560,5 +563,3 @@ class ImageLinks {
     );
   }
 }
-
-

@@ -15,7 +15,7 @@ class Explore extends StatefulWidget {
 }
 
 List<String> explore = [
-  'Norse',
+  'African Stories',
   'Sports',
   'Children',
   'Greek',
@@ -64,9 +64,10 @@ class _ExploreState extends State<Explore> {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return const Center(child: CircularProgressIndicator());
                   } else if (snapshot.hasError) {
-                    return Center(child: Text('Error: ${snapshot.error}'));
+                    return Center(
+                        child: Text('Error: ${snapshot.error ?? ''}'));
                   } else {
-                    List<VolumeInfo> books = snapshot.data!;
+                    List<VolumeInfo> books = snapshot.data ?? [];
                     return GridView.builder(
                       primary: F,
                       shrinkWrap: true,
@@ -98,8 +99,8 @@ class _ExploreState extends State<Explore> {
                                     ClipRRect(
                                       borderRadius: BorderRadius.circular(5),
                                       child: Image.network(
-                                        books[index].imageLinks!.thumbnail ??
-                                            '',
+                                        books[index].imageLinks?.thumbnail ??
+                                            'https://images.unsplash.com/photo-1682687982423-295485af248a?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                                         height: 150,
                                         width: double.infinity,
                                         fit: BoxFit.cover,

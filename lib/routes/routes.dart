@@ -11,7 +11,7 @@ class AppRoute {
     GetPage(name: navbar, page: () => NavBar()),
     GetPage(name: home, page: () => const Home()),
     GetPage(name: explore, page: () => const Explore()),
-    GetPage(name: save, page: () => const SavedPage()),
+    GetPage(name: save, page: () =>    const SavedPage()),
     GetPage(name: profile, page: () => const Profile()),
     GetPage(
         name: bookinfo,

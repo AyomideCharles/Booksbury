@@ -1,3 +1,4 @@
+import 'package:audio_books/controllers/saved_books_controller.dart';
 import 'package:audio_books/services/api_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -52,7 +53,8 @@ class _BookInfoState extends State<BookInfo> with TickerProviderStateMixin {
             ClipRRect(
               borderRadius: BorderRadius.circular(10),
               child: Image.network(
-                widget.booking.imageLinks!.thumbnail ?? '',
+                widget.booking.imageLinks?.thumbnail ??
+                    'https://images.unsplash.com/photo-1682687982423-295485af248a?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 width: double.infinity,
                 height: MediaQuery.of(context).size.height * 0.3,
                 fit: BoxFit.fill,
@@ -120,7 +122,7 @@ class _BookInfoState extends State<BookInfo> with TickerProviderStateMixin {
                     Row(
                       children: [
                         const Text('Date: '),
-                        Text(widget.booking.publishedDate),
+                        Text(widget.booking.publishedDate ?? ''),
                       ],
                     ),
                     Row(
@@ -158,7 +160,7 @@ class _BookInfoState extends State<BookInfo> with TickerProviderStateMixin {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(5))),
                   onPressed: () {
-                    _launchUrl(widget.booking.previewLink);
+                    _launchUrl(widget.booking.previewLink ?? '');
                   },
                   icon: const Icon(
                     Iconsax.book,
@@ -171,72 +173,66 @@ class _BookInfoState extends State<BookInfo> with TickerProviderStateMixin {
               const SizedBox(
                 width: 20,
               ),
-              ElevatedButton.icon(
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColor.buttonColor_2,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5))),
-                  onPressed: () {
-                    saveBook();
-                    Get.dialog(
-                      barrierDismissible: false,
-                      AlertDialog(
-                        backgroundColor: AppColor.buttonColor,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)),
-                        title: Column(
-                          children: [
-                            const Text(
-                              'Added to your\n Library!!!',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(fontWeight: FontWeight.w500),
+              GetBuilder<SavedBooksController>(
+                  init: Get.put(SavedBooksController()),
+                  builder: (controller) => ElevatedButton.icon(
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: AppColor.buttonColor_2,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5))),
+                      onPressed: () {
+                        controller.addSavedBook(widget.booking);
+                        Get.dialog(
+                          barrierDismissible: false,
+                          AlertDialog(
+                            backgroundColor: AppColor.buttonColor,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10)),
+                            title: Column(
+                              children: [
+                                const Text(
+                                  'Added to your\n Library!!!',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(fontWeight: FontWeight.w500),
+                                ),
+                                const SizedBox(
+                                  height: 20,
+                                ),
+                                Image.asset(
+                                  'assets/images/thumbsup.png',
+                                ),
+                              ],
                             ),
-                            const SizedBox(
-                              height: 20,
-                            ),
-                            Image.asset(
-                              'assets/images/thumbsup.png',
-                            ),
-                          ],
-                        ),
-                        actions: [
-                          ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(5)),
-                                  backgroundColor: AppColor.buttonColor_2),
-                              onPressed: () {
-                                Get.back();
-                              },
-                              child: const Text(
-                                'Okay',
-                                style: TextStyle(
-                                    color: AppColor.primaryColor, fontSize: 14),
-                              ))
-                        ],
+                            actions: [
+                              ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(5)),
+                                      backgroundColor: AppColor.buttonColor_2),
+                                  onPressed: () {
+                                    Get.back();
+                                  },
+                                  child: const Text(
+                                    'Okay',
+                                    style: TextStyle(
+                                        color: AppColor.primaryColor,
+                                        fontSize: 14),
+                                  ))
+                            ],
+                          ),
+                        );
+                      },
+                      icon: const Icon(
+                        Iconsax.document_download,
+                        color: AppColor.primaryColor,
                       ),
-                    );
-                  },
-                  icon: const Icon(
-                    Iconsax.document_download,
-                    color: AppColor.primaryColor,
-                  ),
-                  label: const Text(
-                    'Save Book',
-                    style: TextStyle(color: AppColor.primaryColor),
-                  ))
+                      label: const Text(
+                        'Save Book',
+                        style: TextStyle(color: AppColor.primaryColor),
+                      )))
             ],
           )),
     );
   }
-
-  void saveBook() {
-    setState(() {
-      SavedBooksManager.savedBooks.add(widget.booking);
-    });
-  }
-}
-
-class SavedBooksManager {
-  static List<VolumeInfo> savedBooks = [];
 }
