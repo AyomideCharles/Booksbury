@@ -80,81 +80,68 @@ class _BookInfoState extends State<BookInfo> with TickerProviderStateMixin {
               subtitle: Text(widget.booking.authors.join()),
             ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Container(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      color: AppColor.secondaryColor,
-                      border: Border.all(color: AppColor.buttonColor)),
-                  width: 120,
-                  height: 50,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text('Released'),
-                      Text(
-                        (widget.booking.publishedDate ?? ''),
-                      ),
-                    ],
+                Expanded(
+                  flex: 1,
+                  child: Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        color: AppColor.secondaryColor,
+                        border: Border.all(color: AppColor.buttonColor)),
+                    height: 50,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text('Released'),
+                        Text(
+                          (widget.booking.publishedDate ?? ''),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-                Container(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      color: AppColor.secondaryColor,
-                      border: Border.all(color: AppColor.buttonColor)),
-                  width: 120,
-                  height: 50,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text('Part'),
-                      Text(widget.booking.contentVersion ?? '')
-                    ],
+                const SizedBox(
+                  width: 10,
+                ),
+                Expanded(
+                  flex: 1,
+                  child: Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        color: AppColor.secondaryColor,
+                        border: Border.all(color: AppColor.buttonColor)),
+                    height: 50,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text('Categories'),
+                        Text(widget.booking.averageRating.toString())
+                      ],
+                    ),
                   ),
                 ),
-                Container(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      color: AppColor.secondaryColor,
-                      border: Border.all(color: AppColor.buttonColor)),
-                  width: 120,
-                  height: 50,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text('Pages'),
-                      Text(widget.booking.pageCount.toString())
-                    ],
+                const SizedBox(
+                  width: 10,
+                ),
+                Expanded(
+                  flex: 1,
+                  child: Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        color: AppColor.secondaryColor,
+                        border: Border.all(color: AppColor.buttonColor)),
+                    height: 50,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text('Pages'),
+                        Text(widget.booking.pageCount.toString())
+                      ],
+                    ),
                   ),
                 ),
               ],
             ),
-            // Row(
-            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //   children: List.generate(3, (index) {
-            //     return Container(
-            //       decoration: BoxDecoration(
-            //           borderRadius: BorderRadius.circular(5),
-            //           color: AppColor.secondaryColor,
-            //           border: Border.all(color: AppColor.buttonColor)),
-            //       width: 100,
-            //       height: 50,
-            //       child: Column(
-            //         mainAxisAlignment: MainAxisAlignment.center,
-            //         children: [
-            //           Text(cardInfo[index]['info']),
-            //           Text(
-            //             widget.booking.pageCount.toString(),
-            //             style: const TextStyle(
-            //                 fontSize: 16, fontWeight: FontWeight.w500),
-            //           )
-            //         ],
-            //       ),
-            //     );
-            //   }),
-            // ),
             TabBar(
                 indicatorColor: Colors.black,
                 unselectedLabelColor: Colors.grey,
@@ -179,58 +166,58 @@ class _BookInfoState extends State<BookInfo> with TickerProviderStateMixin {
               height: MediaQuery.of(context).size.height,
               child: TabBarView(controller: tabControll, children: [
                 Text(widget.booking.description ?? ''),
+
+                // details tab
                 Column(
                   children: [
-                    Text(widget.booking.contentVersion ?? ''),
-                    Text(widget.booking.previewLink ?? ''),
-                    Text(widget.booking.infoLink ?? ''),
-                    Text(widget.booking.canonicalVolumeLink ?? '')
+                    Row(
+                      children: [
+                        const Text(
+                          'Date Published: ',
+                          style: TextStyle(fontSize: 17),
+                        ),
+                        Text(widget.booking.publishedDate ?? ''),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        const Text(
+                          'Publisher: ',
+                          style: TextStyle(fontSize: 17),
+                        ),
+                        Text(widget.booking.publisher ?? ''),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        const Text('Subtitle: '),
+                        Wrap(
+                          children: [
+                            Text(
+                              widget.booking.subtitle ?? '',
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        const Text('Category: '),
+                        Text(
+                          widget.booking.categories.join(),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        const Text('Rating: '),
+                        Text(
+                          widget.booking.contentVersion ?? 'Not Available',
+                        ),
+                      ],
+                    ),
                   ],
                 ),
-                // Column(
-                //   children: [
-                //     Row(
-                //       children: [
-                //         const Text('Date Published: '),
-                //         Text(widget.booking.publishedDate ?? ''),
-                //       ],
-                //     ),
-                //     Row(
-                //       children: [
-                //         const Text('Publisher: '),
-                //         Text(widget.booking.publisher ?? ''),
-                //       ],
-                //     ),
-                //     Row(
-                //       children: [
-                //         const Text('Subtitle: '),
-                //         Wrap(
-                //           children: [
-                //             Text(
-                //               widget.booking.subtitle ?? '',
-                //             )
-                //           ],
-                //         ),
-                //       ],
-                //     ),
-                //     Row(
-                //       children: [
-                //         const Text('Category: '),
-                //         Text(
-                //           widget.booking.categories.join(),
-                //         ),
-                //       ],
-                //     ),
-                //     Row(
-                //       children: [
-                //         const Text('Rating: '),
-                //         Text(
-                //           widget.booking.contentVersion ?? 'Not Available',
-                //         ),
-                //       ],
-                //     ),
-                //   ],
-                // ),
                 const Text('About the Author'),
                 ListView.builder(
                     padding: EdgeInsets.zero,

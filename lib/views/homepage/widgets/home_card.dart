@@ -8,7 +8,7 @@ class HomeCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      height: 350,
+      height: MediaQuery.of(context).size.height / 2.5,
       child: Stack(children: [
         ClipRRect(
           borderRadius: BorderRadius.circular(10),
@@ -94,47 +94,6 @@ class HomeCard extends StatelessWidget {
                 )
               ],
             ),
-            // child: const Column(
-            //   crossAxisAlignment: CrossAxisAlignment.start,
-            //   children: [
-            //     Row(
-            //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //       children: [
-            //         Text(
-            //           'Food in the Ancient',
-            //           style: TextStyle(color: Colors.white),
-            //         ),
-            //         Row(
-            //           children: [
-            //             Icon(Icons.play_arrow),
-            //             Text(
-            //               '15h Listen',
-            //               style: TextStyle(color: Colors.white),
-            //             )
-            //           ],
-            //         )
-            //       ],
-            //     ),
-            //     Row(
-            //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //       children: [
-            //         Text(
-            //           'World from A to Z',
-            //           style: TextStyle(color: Colors.white),
-            //         ),
-            //         Row(
-            //           children: [
-            //             Icon(Icons.person),
-            //             Text(
-            //               'Andrew Dalby',
-            //               style: TextStyle(color: Colors.white),
-            //             )
-            //           ],
-            //         )
-            //       ],
-            //     )
-            //   ],
-            // ),
           ),
         )
       ]),

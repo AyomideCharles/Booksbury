@@ -38,7 +38,6 @@ class _SavedPageState extends State<SavedPage> {
                             showSnack();
                             controller
                                 .removeSavedBook(controller.savedBooks[index]);
-                            // doNothing(index);
                           },
                           backgroundColor: const Color(0xFFFE4A49),
                           foregroundColor: Colors.white,

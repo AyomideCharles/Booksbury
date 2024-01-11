@@ -500,6 +500,7 @@ class VolumeInfo {
   int? averageRating;
   int? ratingsCount;
   String? subtitle;
+
   ImageLinks? imageLinks;
 
   VolumeInfo({
@@ -541,6 +542,7 @@ class VolumeInfo {
       averageRating: json['averageRating'],
       ratingsCount: json['ratingsCount'],
       subtitle: json['subtitle'],
+
       imageLinks: json['imageLinks'] != null
           ? ImageLinks.fromJson(json['imageLinks'])
           : null,
