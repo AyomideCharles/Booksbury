@@ -18,9 +18,18 @@ class _BookInfoState extends State<BookInfo> with TickerProviderStateMixin {
   late TabController tabControll;
 
   List cardInfo = [
-    {'info': 'Released'},
-    {'info': 'Part'},
-    {'info': 'Pages'},
+    {
+      'info': 'Released',
+      'widget': 'widget.booking.pageCount.toString()',
+    },
+    {
+      'info': 'Part',
+      'widget': 'widget.booking.pageCount.toString()',
+    },
+    {
+      'info': 'Pages',
+      'widget': 'widget.booking.pageCount.toString()',
+    },
   ];
 
   @override
@@ -65,34 +74,87 @@ class _BookInfoState extends State<BookInfo> with TickerProviderStateMixin {
               contentPadding: EdgeInsets.zero,
               title: Text(
                 widget.booking.title,
-                style: const TextStyle(fontWeight: FontWeight.w500),
+                style:
+                    const TextStyle(fontWeight: FontWeight.w900, fontSize: 18),
               ),
               subtitle: Text(widget.booking.authors.join()),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: List.generate(3, (index) {
-                return Container(
+              children: [
+                Container(
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(5),
                       color: AppColor.secondaryColor,
                       border: Border.all(color: AppColor.buttonColor)),
-                  width: 100,
+                  width: 120,
                   height: 50,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(cardInfo[index]['info']),
+                      const Text('Released'),
                       Text(
-                        widget.booking.pageCount.toString(),
-                        style: const TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.w500),
-                      )
+                        (widget.booking.publishedDate ?? ''),
+                      ),
                     ],
                   ),
-                );
-              }),
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      color: AppColor.secondaryColor,
+                      border: Border.all(color: AppColor.buttonColor)),
+                  width: 120,
+                  height: 50,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text('Part'),
+                      Text(widget.booking.contentVersion ?? '')
+                    ],
+                  ),
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      color: AppColor.secondaryColor,
+                      border: Border.all(color: AppColor.buttonColor)),
+                  width: 120,
+                  height: 50,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text('Pages'),
+                      Text(widget.booking.pageCount.toString())
+                    ],
+                  ),
+                ),
+              ],
             ),
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //   children: List.generate(3, (index) {
+            //     return Container(
+            //       decoration: BoxDecoration(
+            //           borderRadius: BorderRadius.circular(5),
+            //           color: AppColor.secondaryColor,
+            //           border: Border.all(color: AppColor.buttonColor)),
+            //       width: 100,
+            //       height: 50,
+            //       child: Column(
+            //         mainAxisAlignment: MainAxisAlignment.center,
+            //         children: [
+            //           Text(cardInfo[index]['info']),
+            //           Text(
+            //             widget.booking.pageCount.toString(),
+            //             style: const TextStyle(
+            //                 fontSize: 16, fontWeight: FontWeight.w500),
+            //           )
+            //         ],
+            //       ),
+            //     );
+            //   }),
+            // ),
             TabBar(
                 indicatorColor: Colors.black,
                 unselectedLabelColor: Colors.grey,
@@ -119,30 +181,72 @@ class _BookInfoState extends State<BookInfo> with TickerProviderStateMixin {
                 Text(widget.booking.description ?? ''),
                 Column(
                   children: [
-                    Row(
-                      children: [
-                        const Text('Date: '),
-                        Text(widget.booking.publishedDate ?? ''),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        const Text('Publisher: '),
-                        Text(widget.booking.publisher ?? ''),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        const Text('Subtitle: '),
-                        Text(
-                          widget.booking.subtitle ?? '',
-                        ),
-                      ],
-                    ),
+                    Text(widget.booking.contentVersion ?? ''),
+                    Text(widget.booking.previewLink ?? ''),
+                    Text(widget.booking.infoLink ?? ''),
+                    Text(widget.booking.canonicalVolumeLink ?? '')
                   ],
                 ),
-                const Text('tab 3 view'),
-                const Text('tab 4 view'),
+                // Column(
+                //   children: [
+                //     Row(
+                //       children: [
+                //         const Text('Date Published: '),
+                //         Text(widget.booking.publishedDate ?? ''),
+                //       ],
+                //     ),
+                //     Row(
+                //       children: [
+                //         const Text('Publisher: '),
+                //         Text(widget.booking.publisher ?? ''),
+                //       ],
+                //     ),
+                //     Row(
+                //       children: [
+                //         const Text('Subtitle: '),
+                //         Wrap(
+                //           children: [
+                //             Text(
+                //               widget.booking.subtitle ?? '',
+                //             )
+                //           ],
+                //         ),
+                //       ],
+                //     ),
+                //     Row(
+                //       children: [
+                //         const Text('Category: '),
+                //         Text(
+                //           widget.booking.categories.join(),
+                //         ),
+                //       ],
+                //     ),
+                //     Row(
+                //       children: [
+                //         const Text('Rating: '),
+                //         Text(
+                //           widget.booking.contentVersion ?? 'Not Available',
+                //         ),
+                //       ],
+                //     ),
+                //   ],
+                // ),
+                const Text('About the Author'),
+                ListView.builder(
+                    padding: EdgeInsets.zero,
+                    primary: false,
+                    itemCount: 20,
+                    itemBuilder: (_, i) {
+                      return ListTile(
+                        leading: ClipOval(
+                          child: Image.network(
+                              'https://th.bing.com/th/id/R.78fa48850540432f077acaa8cdfe1380?rik=vPZW0ic6039fog&pid=ImgRaw&r=0'),
+                        ),
+                        title: const Text('Name'),
+                        subtitle: const Text(
+                            'Users can drop a comment and give reviews about a book.'),
+                      );
+                    })
               ]),
             ),
           ]),

@@ -496,11 +496,11 @@ class VolumeInfo {
   String? previewLink;
   String? infoLink;
   String? canonicalVolumeLink;
-  List<String>? categories;
+  List<String> categories;
   int? averageRating;
   int? ratingsCount;
   String? subtitle;
-  ImageLinks? imageLinks; // Added ImageLinks property
+  ImageLinks? imageLinks;
 
   VolumeInfo({
     required this.title,
@@ -514,11 +514,11 @@ class VolumeInfo {
     required this.previewLink,
     required this.infoLink,
     required this.canonicalVolumeLink,
-    this.categories,
+    required this.categories,
     this.averageRating,
     this.ratingsCount,
     this.subtitle,
-    this.imageLinks, // Added ImageLinks property
+    this.imageLinks,
   });
 
   factory VolumeInfo.fromJson(Map<String, dynamic> json) {
@@ -534,9 +534,10 @@ class VolumeInfo {
       previewLink: json['previewLink'],
       infoLink: json['infoLink'],
       canonicalVolumeLink: json['canonicalVolumeLink'],
-      categories: json['categories'] != null
-          ? List<String>.from(json['categories'])
-          : null,
+      categories: List<String>.from(json['categories']),
+      // categories: json['categories'] != null
+      //     ? List<String>.from(json['categories'])
+      //     : null,
       averageRating: json['averageRating'],
       ratingsCount: json['ratingsCount'],
       subtitle: json['subtitle'],

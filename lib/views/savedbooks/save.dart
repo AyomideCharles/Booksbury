@@ -107,12 +107,6 @@ class _SavedPageState extends State<SavedPage> {
         ));
   }
 
-  // void doNothing(int index) {
-  //   setState(() {
-  //     SavedBooksController.savedBooks.removeAt(index);
-  //   });
-  // }
-
   void showSnack() {
     Get.snackbar("Item removed", "This is a simple snackbar message.",
         colorText: AppColor.tertiaryColor,

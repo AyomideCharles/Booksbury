@@ -73,10 +73,11 @@ class _ExploreState extends State<Explore> {
                       shrinkWrap: true,
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2,
-                              mainAxisSpacing: 5,
-                              crossAxisSpacing: 5,
-                              childAspectRatio: 1 / 1.5),
+                        crossAxisCount: 2,
+                        mainAxisSpacing: 5,
+                        crossAxisSpacing: 5,
+                        mainAxisExtent: 300,
+                      ),
                       itemCount: books.length,
                       itemBuilder: (context, index) {
                         final selectedBook = books[index];
@@ -110,20 +111,21 @@ class _ExploreState extends State<Explore> {
                                       height: 5,
                                     ),
                                     Text(
-                                      books[index].title.substring(0, 10),
+                                      books[index].title,
                                       style: const TextStyle(
                                           fontSize: 17,
                                           fontWeight: FontWeight.w500),
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
                                     ),
                                     Text(
-                                      books[index]
-                                          .authors
-                                          .join()
-                                          .substring(0, 7),
+                                      books[index].authors.join(),
                                       style: const TextStyle(
                                           color: AppColor.tertiaryColor,
                                           fontSize: 15,
                                           fontWeight: FontWeight.w400),
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
                                     ),
                                     const Spacer(),
                                     Row(
