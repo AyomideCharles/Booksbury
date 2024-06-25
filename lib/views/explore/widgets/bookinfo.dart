@@ -1,6 +1,7 @@
 import 'package:audio_books/controllers/saved_books_controller.dart';
 import 'package:audio_books/services/api_service.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -34,7 +35,7 @@ class _BookInfoState extends State<BookInfo> with TickerProviderStateMixin {
 
   @override
   void initState() {
-    tabControll = TabController(length: 4, vsync: this);
+    tabControll = TabController(length: 3, vsync: this);
     super.initState();
   }
 
@@ -114,8 +115,11 @@ class _BookInfoState extends State<BookInfo> with TickerProviderStateMixin {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text('Categories'),
-                        Text(widget.booking.averageRating.toString())
+                        const Text('Rating'),
+                        Text(
+                          widget.booking.averageRating.toString(),
+                          overflow: TextOverflow.ellipsis,
+                        )
                       ],
                     ),
                   ),
@@ -155,11 +159,11 @@ class _BookInfoState extends State<BookInfo> with TickerProviderStateMixin {
                     text: 'Details',
                   ),
                   Tab(
-                    text: 'Author',
-                  ),
-                  Tab(
                     text: 'Review',
-                  )
+                  ),
+                  // Tab(
+                  //   text: 'Review',
+                  // )
                 ]),
             Container(
               padding: const EdgeInsets.only(top: 10),
@@ -174,51 +178,82 @@ class _BookInfoState extends State<BookInfo> with TickerProviderStateMixin {
                       children: [
                         const Text(
                           'Date Published: ',
-                          style: TextStyle(fontSize: 17),
+                          style: TextStyle(fontSize: 15),
                         ),
-                        Text(widget.booking.publishedDate ?? ''),
+                        Text(
+                          widget.booking.publishedDate ?? '',
+                          style: const TextStyle(fontSize: 15),
+                        ),
                       ],
+                    ),
+                    const SizedBox(
+                      height: 8,
                     ),
                     Row(
                       children: [
                         const Text(
                           'Publisher: ',
-                          style: TextStyle(fontSize: 17),
+                          style: TextStyle(fontSize: 15),
                         ),
-                        Text(widget.booking.publisher ?? ''),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        const Text('Subtitle: '),
-                        Wrap(
-                          children: [
-                            Text(
-                              widget.booking.subtitle ?? '',
-                            )
-                          ],
+                        Text(
+                          widget.booking.publisher ?? '',
+                          style: const TextStyle(fontSize: 15),
                         ),
                       ],
                     ),
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          'Subtitle: ',
+                          style: TextStyle(fontSize: 15),
+                        ),
+                        Expanded(
+                          child: Text(
+                            widget.booking.subtitle ?? 'N.A',
+                            style: const TextStyle(fontSize: 15),
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 5,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 8,
+                    ),
                     Row(
                       children: [
-                        const Text('Category: '),
+                        const Text(
+                          'Category: ',
+                          style: TextStyle(fontSize: 15),
+                        ),
                         Text(
                           widget.booking.categories.join(),
+                          style: const TextStyle(fontSize: 15),
                         ),
                       ],
                     ),
+                    const SizedBox(
+                      height: 8,
+                    ),
                     Row(
                       children: [
-                        const Text('Rating: '),
+                        const Text(
+                          'Version: ',
+                          style: TextStyle(fontSize: 15),
+                        ),
                         Text(
                           widget.booking.contentVersion ?? 'Not Available',
+                          style: const TextStyle(fontSize: 15),
                         ),
                       ],
                     ),
                   ],
                 ),
-                const Text('About the Author'),
+                // const Text('About the Author'),
                 ListView.builder(
                     padding: EdgeInsets.zero,
                     primary: false,

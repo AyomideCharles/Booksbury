@@ -497,7 +497,7 @@ class VolumeInfo {
   String? infoLink;
   String? canonicalVolumeLink;
   List<String> categories;
-  int? averageRating;
+  double averageRating;
   int? ratingsCount;
   String? subtitle;
 
@@ -516,7 +516,7 @@ class VolumeInfo {
     required this.infoLink,
     required this.canonicalVolumeLink,
     required this.categories,
-    this.averageRating,
+    required this.averageRating,
     this.ratingsCount,
     this.subtitle,
     this.imageLinks,
@@ -525,22 +525,27 @@ class VolumeInfo {
   factory VolumeInfo.fromJson(Map<String, dynamic> json) {
     return VolumeInfo(
       title: json['title'],
-      authors: List<String>.from(json['authors']),
+      authors:
+          json['authors'] == null ? [] : List<String>.from(json['authors']),
       publisher: json['publisher'],
       publishedDate: json['publishedDate'],
       description: json['description'],
-      pageCount: json['pageCount'],
+      pageCount: json['pageCount'] ?? 0,
       allowAnonLogging: json['allowAnonLogging'],
       contentVersion: json['contentVersion'],
       previewLink: json['previewLink'],
       infoLink: json['infoLink'],
       canonicalVolumeLink: json['canonicalVolumeLink'],
-      categories: List<String>.from(json['categories']),
+      categories: json['categories'] == null
+          ? []
+          : List<String>.from(json['categories']),
       // categories: json['categories'] != null
       //     ? List<String>.from(json['categories'])
       //     : null,
-      averageRating: json['averageRating'],
-      ratingsCount: json['ratingsCount'],
+      averageRating: json['averageRating'] == null
+          ? 0.0
+          : json['averageRating'].toDouble(),
+      ratingsCount: json['ratingsCount'] ?? 0,
       subtitle: json['subtitle'],
 
       imageLinks: json['imageLinks'] != null

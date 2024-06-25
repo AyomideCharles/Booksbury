@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:iconsax/iconsax.dart';
 import '../../constants/app_color.dart';
 import '../../services/api_service.dart';
@@ -15,12 +14,13 @@ class Explore extends StatefulWidget {
 }
 
 List<String> explore = [
+  'Computers',
   'African Stories',
   'Sports',
-  'Children',
+  'Fiction',
   'Greek',
   'America',
-  'God of war'
+  'Educational'
 ];
 
 class _ExploreState extends State<Explore> {
@@ -69,7 +69,7 @@ class _ExploreState extends State<Explore> {
                   } else {
                     List<VolumeInfo> books = snapshot.data ?? [];
                     return GridView.builder(
-                      primary: F,
+                      primary: false,
                       shrinkWrap: true,
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
